@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JUnit&#43;Mockito vs Groovy&#43;Spock on 양봉수 블로그</title>
+    <link>/junit&#43;mockito_vs_groovy&#43;spock/</link>
+    <description>Recent content in JUnit&#43;Mockito vs Groovy&#43;Spock on 양봉수 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    
+	<atom:link href="/junit+mockito_vs_groovy+spock/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

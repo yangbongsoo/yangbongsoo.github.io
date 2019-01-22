@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java 8 in Action on 양봉수 블로그</title>
+    <link>/java8_in_action/</link>
+    <description>Recent content in Java 8 in Action on 양봉수 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    
+	<atom:link href="/java8_in_action/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Part1 기초</title>
+      <link>/java8_in_action/part1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java8_in_action/part1/</guid>
+      <description>1장 - 자바8을 눈여겨봐야 하는 이유 Stream processing : stream이란 한번에 한 개씩 만들어지는 연속적인 데이터 항목들의 모임을 말한다.
+동작 파라미터화 : 메서드를 다른 메서드의 인수로 넘겨주는 기능을 제공한다.
+병렬성과 공유 가변 데이터 : 다른 코드와 동시에 실행하더라도 안전하게 실행할 수 있는 코드를 만드려면 공유된 가변 데이터에 접근하지 말아야 한다. 이런 함수를 pure 함수, stateless 함수라 부른다.
+자바 함수 프로그래밍 언어에서 함수라는 용어는 메서드 특히 정적 메서드와 같은 의미로 사용된다.</description>
+    </item>
+    
+    <item>
+      <title>Part2-1 함수형 데이터 처리</title>
+      <link>/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/</guid>
+      <description>4장 - 스트림 소개 DB에서는 select name from dishes where calorie &amp;lt; 400문장 처럼 선언형으로 연산을 표현할 수 있다(직접 구현할 필요가 없다). SQL 질의 언어에서는 우리가 기대하는 것이 무엇인지 직접 표현할 수 있다.
+스트림이란 무엇인가? 스트림이란 자바 API에 새로 추가된 기능으로, 스트림을 이용하면 선언형(즉, 데이터를 처리하는 임의 구현 코드 대신 질의로 표현할 수 있다)으로 컬렉션 데이터를 처리할 수 있다. 또한 스트림을 이용하면 멀티 스레드 코드를 구현하지 않아도 데이터를 투명하게 병렬로 처리할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Part2-2 함수형 데이터 처리</title>
+      <link>/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/</guid>
+      <description>6장 - 스트림으로 데이터 수집 4장과 5장에서는 스트림에서 최종 연산 collect를 사용하는 방법을 확인했다. 하지만 toList로 스트림 요소를 항상 리스트로만 변환했다. 이 장에서는 reduce가 그랬던 것처럼 collect 역시 다양한 요소 누적 방식을 인수로 받아서 스트림을 최종 결과로 도출하는 리듀싱 연산을 수행할 수 있음을 설명한다.
+// 통화별로 트랜잭션을 그룹화한 코드 - 명령형 버전 Map&amp;lt;Currency, List&amp;lt;Transaction&amp;gt;&amp;gt; transactionByCurrencies = new HashMap&amp;lt;&amp;gt;(); for(Transaction transaction : transactions){ Currency currency = transaction.getCurrency(); List&amp;lt;Transaction&amp;gt; transactionForCurrency = transactionByCurrencies.</description>
+    </item>
+    
+    <item>
+      <title>Part3-1 효과적인 자바8 프로그래밍</title>
+      <link>/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/</guid>
+      <description>9장 디폴트 메서드 스터디에서 나온 내용 : 인터페이스를 구현한 클래스에서 바로 사용하기 위해 default 메서드를 사용하면 안된다. 인터페이스를 직접 사용하는 클라이언트가 쉽게 쓰기 위해 사용돼야 한다. ex list.sort(Compator&amp;lt;? super E&amp;gt; c)
+그리고 만약 한 인터페이스를 구현한 클래스가 10개 있는데 그 중 2개는 인터페이스의 추상 메서드를 잘 안쓰고 빈 구현만 해놨다면 2개의 구현체가 그 인터페이스를 바라보고 있는게 올바른지 의심해볼 필요가 있다.(디폴트 메서드로 만들어서 빈 구현체를 없애는 게 아니라)
+자바 8 이전에는 만약 인터페이스에 새로운 메서드를 정의하면</description>
+    </item>
+    
+  </channel>
+</rss>

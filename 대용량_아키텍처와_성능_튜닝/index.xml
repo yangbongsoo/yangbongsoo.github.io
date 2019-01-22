@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>대용량 아키텍처와 성능 튜닝 on 양봉수 블로그</title>
+    <link>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/</link>
+    <description>Recent content in 대용량 아키텍처와 성능 튜닝 on 양봉수 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    
+	<atom:link href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>레퍼런스 아키텍처</title>
+      <link>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/</guid>
+      <description>레퍼런스 아키텍처는 아키텍처 설계를 할 때 참고할 수 있는 아키텍처다. 그 담위에 따라서 다음과 같이 3가지로 구분할 수 있다.
+Common Architecture는 기술 중심으로, 일반적인 소프트웨어 개발에 사용할 수 있는 아키텍처 스타일이다. 특정 업무 도메인에 대한 종속성 없이 널리 적용할 수 있다. SOA(서비스 지향 아키텍처) , CBD(컴포넌트 기반 아키텍처), ROA(리소스 기반 아키텍처), EAI(엔터프라이즈 애플리케이션 통합) 등이 이에 해당한다. Industry Architecture는 업무 도메인에 대한 종속성을 갖는다. 금융, 공공, 가스/오일, 하이테크/제조, 통신 등 특정 산업 분야에 대한 레퍼런스 아키텍처다.</description>
+    </item>
+    
+    <item>
+      <title>마이크로 서비스 아키텍처</title>
+      <link>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/</guid>
+      <description>마이크로 서비스 아키텍처를 이해하려면 먼저 모노리틱 아키텍처 스타일에 대해서 이해해야 한다. 모노리틱 아키텍처 스타일은 기존의 전통적인 웹 시스템 개발 스타일로, 하나의 애클리케이션 내에 모든 로직이 들어가 있는 &amp;lsquo;통짜 구조&amp;rsquo;이다. ex)
+위와 같이 온라인 쇼핑몰이 있을 때 톰캣 서버에서 도는 WAR 파일내에 사용자 관리, 상품, 주문 관리 등 모든 컴포넌트가 들어 있고 이를 처리하는 UX로직까지 하나로 포장돼서 들어가 있는 구조이다.
+전체 애플리케이션을 하나로 처리하기 때문에 개발 도구에서 하나의 애플리케이션만 개발하면 되고 배포 역시 간편하며 테스트도 하나의 애플리케이션만 수행하면 되므로 편리하다.</description>
+    </item>
+    
+    <item>
+      <title>REST의 이해와 설계</title>
+      <link>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/</guid>
+      <description>1. REST기본 REST는 근래에 들어 HTTP와 JSON을 함께 사용하여 OPEN API를 구현하는 방법으로 주류를 이루고 있으며, 대부분의 OPEN API는 이 REST 아키텍처를 기반으로 설계 및 구현되고 있다.
+REST원리를 따르는 시스템은 Restful이란 용어로 지칭된다.
+REST는 크게 리소스, 메소드, 메세지 3가지 요소로 구성된다. ex) 이름이 Terry인 사용자를 생성한다
+HTTP POST , http://myweb/users/ { &amp;quot;users&amp;quot; : { &amp;quot;name&amp;quot; : &amp;quot;terry&amp;quot; } }  리소스 = http://myweb/users 형태의 URI HTTP POST메소드 = 생성한다</description>
+    </item>
+    
+  </channel>
+</rss>

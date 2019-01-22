@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>토비 스프링 on 양봉수 블로그</title>
+    <link>/toby_spring/</link>
+    <description>Recent content in 토비 스프링 on 양봉수 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    
+	<atom:link href="/toby_spring/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>정의, IoC DI개념, Bean 라이프사이클</title>
+      <link>/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/</guid>
+      <description>자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크
+애플리케이션 프레임워크 : 특정 계층에서 동작하는 한가지 기술분야가 아닌 범용적인 프레임워크
+경량급 : 과거 EJB같은 과도한 엔지니어링이 적용된 기술은 무겁다. 스프링은 복잡한 EJB와 고가의 WAS를 갖추지 않고 단순 서버환경인 톰캣, 제티에서도 잘돌아간다.
+자바 엔터프라이즈 개발을 편하게 해준다 : 스프링이라는 프레임워크가 제공하는 기술이 아니라 자신이 작성하는 애플리케이션 로직에 더 많은 관심과 시간을 쏟게 해준다(초기 기본설정, 적용기술을 잘 선택하고 준비해두면 더이상 크게 신경 쓸 부분이 없다).</description>
+    </item>
+    
+    <item>
+      <title>오브젝트와 의존관계</title>
+      <link>/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/</guid>
+      <description>상속을 통한 UserDao 확장 DB 커넥션 연결이라는 관심을 상속을 통해서 서브 클래스로 분리했다.
+public abstract class UserDao{ public void add(User user) throws ClassNotFoundException, SQLException{ Connection c = getConnection(); ... } public void get(String id) throws ClassNotFoundException, SQLException{ Connection c = getConnection(); ... } //구현코드는 제거되고 추상 메서드로 바뀌었다. 메서드의 구현은 서브클래스가 담당한다.  public abstract Connection getConnection() throws ClassNotFoundException, SQLException; } public Class NUserDao extends UserDao{ public Connection getConnection() throws ClassNotFoundException, SQLException{ //N사 DB Connection 생성코드  } } public Class DUserDao extends UserDao{ public Connection getConnection() throws ClassNotFoundException, SQLException{ //D사 DB Connection 생성코드  } } 새로운 DB 연경방법을 적용해야 할 때는 UserDao를 상속을 통해 확장해주기만 하면 된다.</description>
+    </item>
+    
+    <item>
+      <title>테스트</title>
+      <link>/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/</guid>
+      <description>웹을 통한 DAO 테스트 방법의 문제점 보통 웹 프로그램에서 사용하는 DAO 테스트 방법은 다음과 같다. 서비스 계층, MVC 프레젠테이션 계층까지 포함한 모든 입출력 기능을 대충이라도 코드로 다 만든다. 이렇게 웹 화면을 통해 값을 입력하고, 기능을 수행하고, 결과를 확인하는 방법은 가장 흔히 쓰이는 방법이지만 DAO에 대한 테스트로서는 단점이 너무 많다. DAO뿐만 아니라 서비스 클래스. 컨트롤러, 뷰 등 모든 레이어의 기능을 다 만들고 나서야 테스트가 가능하다는 점이 가장 큰 문제점이다.
+JUnit 프레임워크가 요구하는 조건 두가지, 첫째는 메서드가 public으로 선언되어야 하고 두번째는 @Test 애노테이션 붙여줘야한다.</description>
+    </item>
+    
+    <item>
+      <title>템플릿</title>
+      <link>/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/</guid>
+      <description>템플릿이란 바뀌는 성질이 다른 코드 중에서 변경이 거의 일어나지 않으며 일정한 패턴으로 유지되는 특성을 가진 부분을 자유롭게 변경되는 성질을 가진 부분으로부터 독립시켜서 효과적으로 활용할 수 있도록 하는 방법이다.
+예외처리 기능을 갖춘 DAO
+public void deleteAll() throws SQLException{ Connection c = null; PreparedStatement ps = null; //예외가 발생할 가능성이 있는 코드를 모두 try 블록으로 묶어준다.  try{ c = dataSource.getConnection(); ps = c.prepareStatement(&amp;#34;delete from users&amp;#34;); ps.executeUpdate(); }catch(SQLException e){ throw e; }finally{//예외 발생하건 안하건 항상 실행  if(ps !</description>
+    </item>
+    
+    <item>
+      <title>예외</title>
+      <link>/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/</guid>
+      <description>초난감 예외처리 코드
+// 1번 try { ... } catch(SQLException e) { //예외를 잡고 아무것도 하지 않는다. } // 2번 catch(SQLException e) { System.out.println(e); // 다른 로그나 메세지에 금방 묻혀버려 놓치지 쉽상 } // 3번 catch(SQLException e) { e.printStackTract(); // 다른 로그나 메세지에 금방 묻혀버려 놓치지 쉽상 } catch 블록을 이용해 화면에 메세지를 출력한 것은 예외를 처리한 게 아니다. 예외를 처리할 때 반드시 지켜야 할 핵심 원칙은 한 가지다. 모든 예외는 적절하게 복구되든지 아니면 작업을 중단시키고 운영자 또는 개발자에게 분명하게 통보돼야 한다.</description>
+    </item>
+    
+    <item>
+      <title>서비스 추상화</title>
+      <link>/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/</guid>
+      <description>추상화란 하위 시스템의 공통점을 뽑아내서 분리시키는 것을 말한다. 그렇게 하면 하위 시스템이 어떤 것인지 알지 못해도, 또는 하위 시스템이 바뀌더라도 일관된 방법으로 접근할 수가 있다.
+객체지향적인 코드는 다른 오브젝트의 데이터를 가져와서 작업하는 대신 데이터를 갖고 있는 다른 오브젝트에게 작업을 해달라고 요청한다. 오브젝트에게 데이터를 요구하지 말고 작업을 요청하라는 것이 객체지향 프로그래밍의 가장 기본이 되는 원리이다.
+일반적으로 서비스 추상화라고 하면 트랜잭션과 같이 기능은 유사하나 사용 방법이 다른, 로우레벨의 다양한 기술에 대해 추상 인터페이스와 일관성 있는 접근 방법을 제공해 주는 것을 말한다.</description>
+    </item>
+    
+    <item>
+      <title>AOP</title>
+      <link>/toby_spring/aop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/aop/</guid>
+      <description>스프링에 적용된 가장 인기 있는 AOP 적용 대상은 바로 선언적 트랜잭션 기능이다.
+1. 데코레이터 패턴을 이용한 트랜잭션 코드 분리 UserService 인터페이스를 도입해서 순수 비지니스로직을 담당하는 UserServiceImpl과 트랜잭션 처리를 담당하는 UserServiceTx로 나눈다.
+public interface UserService { void add(User user); void upgradeLevels(); } UserServiceTx에서는 트랜잭션 경계설정을 통해 트랜잭션 작업을 수행하고 실질적인 비지니스로직은 주입받은 userServiceImpl에게 위임하는 구조다.
+public class UserServiceTx implements UserService { UserService userService; PlatformTransactionManager transactionManager; public void setTransactionManager(PlatformTransactionManager transactionManager) { this.</description>
+    </item>
+    
+    <item>
+      <title>스프링 핵심 기술의 응용</title>
+      <link>/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/</guid>
+      <description>자바 언어의 변화와 스프링 스프링이 제공하는 모든 기술의 기초가 되는 DI의 원리는 변하지 않았지만, DI가 적용된 코드를 작성할 때 사용하는 핵심 도구인 자바 언어에는 그간 적지 않은 변화가 있었다. 이런 변화들이 DI 프레임워크로서 스프링의 사용 방식에도 여러 가지 영향을 줬다. 대표적인 두 가지 변화를 살펴보자.
+애노테이션의 메타정보 활용 자바는 소스코드가 컴파일된 후 클래스 파일에 저장됐다가 JVM에 의해 메모리로 로딩되어 실행된다. 그런데 때로는 자바 코드가 실행되는 것이 목적이 아니라 다른 자바 코드에 의해 데이터처럼 취급되기도 한다.</description>
+    </item>
+    
+    <item>
+      <title>스프링 프로젝트 시작하기</title>
+      <link>/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</guid>
+      <description>계층형 아키텍처 3계층 구조(프레젠테이션 계층, 서비스 계층, 데이터 엑세스 계층)는 스프링을 사용하는 엔터프라이즈 애플리케이션에서 가장 많이 사용되는 구조다. 스프링의 주요 모듈과 기술을 살펴보면 3계층 구조에 적합하도록 설계되어 있다는 사실만 봐도 알 수 있다. 단 3계층이라는 것은 논리적이고 개념적인 구분이지 꼭 오브젝트 단위로 딱 끊어져서 만들어지는 게 아님을 염두에 둬야 한다.
+서비스 계층을 굳이 도입하지 않아도 될 만큼 비즈니스 로직이 단순한 애플리케이션이라면 서비스 계층과 데이터 액세스 계층을 통합할 수도 있다. 반대로 프레젠테이션 계층에 서비스 계층을 통합하는 방법도 가능하다.</description>
+    </item>
+    
+    <item>
+      <title>IoC 컨테이너와 DI</title>
+      <link>/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/</guid>
+      <description>핵심 : Singleton 빈이 주인 스프링에서는 원칙적으로 싱글톤 보다 작은 lifecycle을 가지는 빈을 DI하는 것이 의미가 없고 DL을 사용해야 한다는 것이 DI의 원칙이자 자바언어의 기본 sematics이다.
+기본적으로 스프링의 빈은 싱글톤으로 만들어진다. 애플리케이션 컨텍스트마다 빈의 오브젝트는 한 개만 만들어진다는 뜻이다. 사용자의 요청이 있을 때마다 매번 애플리케이션 로직을 담은 오브젝트를 새로 만드는 건 비효율적이기 때문이다. 하나의 빈 오브젝트에 동시에 여러 스레드가 접근하기 때문에 상태 값을 인스턴스 변수에 저장해두고 사용할 수 없다. 따라서 싱글톤의 필드에는 의존관계에 있는 빈에 대한 레퍼런스나 읽기전용 값만 저장해두고 오브젝트의 변하는 상태를 저장하는 인스턴스 변수는 두지 않는다.</description>
+    </item>
+    
+  </channel>
+</rss>

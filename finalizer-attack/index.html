@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>양봉수 블로그</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2019-01-22T18:50:12 KST">
+<title>Finalizer attack :: 양봉수 블로그</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "\/";
+</script>
+<meta name="description" content="">
+
+
+
+    
+  </head>
+  <body data-url="/finalizer-attack/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="/">양봉수 블로그</a>
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/yangbongsoo"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/connection_reset/" class="dd-item
+        ">
+      <div>
+      <a href="/connection_reset/">Connection Reset</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/tshark/" class="dd-item
+        ">
+      <div>
+      <a href="/tshark/"><i class='fa fa-linux' ></i> 티샤크를 활용한 네트워크 트래픽 분석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/shellscript/" class="dd-item
+        ">
+      <div>
+      <a href="/shellscript/"><i class='fa fa-linux' ></i> 자주쓰는 쉘 스크립트 모음</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java8_in_action/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/java8_in_action/"><i class='fa fa-coffee' ></i> Java 8 in Action</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/java8_in_action/part1/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part1/">
+            Part1 기초
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-1 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-2 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">
+            Part3-1 효과적인 자바8 프로그래밍
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/"><i class='fa fa-coffee' ></i> 자바 성능 튜닝 이야기</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/">
+            내가 만든 프로그램의 속도를 알고 싶다
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/">
+            왜 자꾸 String을 쓰지 말라는거야
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/">
+            어디에 담아야 하는지
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/">
+            지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/">
+            static 제대로 한번 써 보자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/">
+            클래스 정보, 어떻게 알아낼 수 있나?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/">
+            로그는 반드시 필요한 내용만 찍자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/"><i class='fa fa-envira' ></i> Spring 개발 이슈모음</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/">
+            Spring Issue1
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/">
+            Spring Issue2
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/toby_spring/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/toby_spring/"><i class='fa fa-envira' ></i> 토비 스프링</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/">
+            정의, IoC DI개념, Bean 라이프사이클
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/">
+            오브젝트와 의존관계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/">
+            테스트
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/">
+            템플릿
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/">
+            서비스 추상화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/aop/" class="dd-item">
+        <div>
+          <a href="/toby_spring/aop/">
+            AOP
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/">
+            스프링 핵심 기술의 응용
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/">
+            스프링 프로젝트 시작하기
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" class="dd-item">
+        <div>
+          <a href="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/">
+            IoC 컨테이너와 DI
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/effective_java/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/effective_java/"><i class='fa fa-coffee' ></i> Effective Java(3rd edition 작업중)</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/">
+            객체의 생성과 삭제
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            모든 객체의 공통 메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/">
+            클래스와 인터페이스
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/">
+            제네릭
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" class="dd-item">
+        <div>
+          <a href="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/">
+            enum과 어노테이션
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/">
+            람다와 스트림
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/">
+            일반적인 프로그래밍 원칙들
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/">
+            병행성
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/">
+            직렬화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/finalizer-attack/" class="dd-item parent active
+        ">
+      <div>
+      <a href="/finalizer-attack/"><i class='fa fa-coffee' ></i> Finalizer attack</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/gitflow/" class="dd-item
+        ">
+      <div>
+      <a href="/gitflow/">Git Flow</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/junit&#43;mockito_vs_groovy&#43;spock/" class="dd-item
+        ">
+      <div>
+      <a href="/junit&#43;mockito_vs_groovy&#43;spock/">JUnit&#43;Mockito vs Groovy&#43;Spock</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/singleton/" class="dd-item
+        ">
+      <div>
+      <a href="/singleton/">Singleton</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/understanding_the_tomcat_classpath/" class="dd-item
+        ">
+      <div>
+      <a href="/understanding_the_tomcat_classpath/"><i class='fa fa-coffee' ></i> Understanding The Tomcat Classpath</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/apache-and-tomcat/" class="dd-item
+        ">
+      <div>
+      <a href="/apache-and-tomcat/">apache and tomcat</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/identity/" class="dd-item
+        ">
+      <div>
+      <a href="/identity/">identity</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/nginx_gzip_option/" class="dd-item
+        ">
+      <div>
+      <a href="/nginx_gzip_option/">nginx gzip 옵션</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/specification_by_example/" class="dd-item
+        ">
+      <div>
+      <a href="/specification_by_example/">specification by example</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/what__why__how_living_documentation/" class="dd-item
+        ">
+      <div>
+      <a href="/what__why__how_living_documentation/">what why how living_documentation</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/"><i class='fa fa-coffee' ></i> 객체지향과 디자인패턴</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/">객체지향의 사실과 오해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/"><i class='fa fa-coffee' ></i> 네이버를 만든 기술 자바편</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/">대용량 아키텍처와 성능 튜닝</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/">
+            레퍼런스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/">
+            마이크로 서비스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/">
+            REST의 이해와 설계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/">마이바티스를 사용한 자바 퍼시스턴스 개발</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/">소프트웨어 품질관리(NHN은 이렇게한다)</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">실용주의프로그래머 익스트림프로그래밍</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/">애자일적용후기</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/">웹을 지탱하는 기술</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/"><i class='fa fa-coffee' ></i> 웹프로그래머를 위한 서블릿 컨테이너의 이해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/"><i class='fa fa-coffee' ></i> 자바의 정석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/clean_coders/" class="dd-item
+        ">
+      <div>
+      <a href="/clean_coders/"><i class='fa fa-coffee' ></i> 클린코더스 강의 정리</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/connection_reset/" >
+   Connection Reset</option>
+    <option value="/tshark/" >
+   티샤크를 활용한 네트워크 트래픽 분석</option>
+    <option value="/shellscript/" >
+   자주쓰는 쉘 스크립트 모음</option>
+    <option value="/java8_in_action/" >
+   Java 8 in Action</option> 
+      <option value="/java8_in_action/part1/" >- Part1 기초</option>
+      <option value="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-1 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-2 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >- Part3-1 효과적인 자바8 프로그래밍</option>
+  
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" >
+   자바 성능 튜닝 이야기</option> 
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" >- 내가 만든 프로그램의 속도를 알고 싶다</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" >- 왜 자꾸 String을 쓰지 말라는거야</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" >- 어디에 담아야 하는지</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" >- 지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" >- static 제대로 한번 써 보자</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" >- 클래스 정보, 어떻게 알아낼 수 있나?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" >- 로그는 반드시 필요한 내용만 찍자</option>
+  
+    <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" >
+   Spring 개발 이슈모음</option> 
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" >- Spring Issue1</option>
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" >- Spring Issue2</option>
+  
+    <option value="/toby_spring/" >
+   토비 스프링</option> 
+      <option value="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" >- 정의, IoC DI개념, Bean 라이프사이클</option>
+      <option value="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" >- 오브젝트와 의존관계</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" >- 테스트</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" >- 템플릿</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" >- 서비스 추상화</option>
+      <option value="/toby_spring/aop/" >- AOP</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" >- 스프링 핵심 기술의 응용</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" >- 스프링 프로젝트 시작하기</option>
+      <option value="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" >- IoC 컨테이너와 DI</option>
+  
+    <option value="/effective_java/" >
+   Effective Java(3rd edition 작업중)</option> 
+      <option value="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" >- 객체의 생성과 삭제</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 모든 객체의 공통 메서드</option>
+      <option value="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" >- 클래스와 인터페이스</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" >- 제네릭</option>
+      <option value="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" >- enum과 어노테이션</option>
+      <option value="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" >- 람다와 스트림</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 메서드</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" >- 일반적인 프로그래밍 원칙들</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" >- 병행성</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" >- 직렬화</option>
+  
+    <option value="/finalizer-attack/"  selected>
+   Finalizer attack</option> 
+  
+    <option value="/gitflow/" >
+   Git Flow</option>
+    <option value="/junit&#43;mockito_vs_groovy&#43;spock/" >
+   JUnit&#43;Mockito vs Groovy&#43;Spock</option>
+    <option value="/singleton/" >
+   Singleton</option>
+    <option value="/understanding_the_tomcat_classpath/" >
+   Understanding The Tomcat Classpath</option>
+    <option value="/apache-and-tomcat/" >
+   apache and tomcat</option>
+    <option value="/identity/" >
+   identity</option>
+    <option value="/nginx_gzip_option/" >
+   nginx gzip 옵션</option>
+    <option value="/specification_by_example/" >
+   specification by example</option>
+    <option value="/what__why__how_living_documentation/" >
+   what why how living_documentation</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" >
+   객체지향과 디자인패턴</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" >
+   객체지향의 사실과 오해</option>
+    <option value="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" >
+   네이버를 만든 기술 자바편</option>
+    <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" >
+   대용량 아키텍처와 성능 튜닝</option> 
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" >- 레퍼런스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" >- 마이크로 서비스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" >- REST의 이해와 설계</option>
+  
+    <option value="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" >
+   마이바티스를 사용한 자바 퍼시스턴스 개발</option>
+    <option value="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" >
+   소프트웨어 품질관리(NHN은 이렇게한다)</option>
+    <option value="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >
+   실용주의프로그래머 익스트림프로그래밍</option>
+    <option value="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" >
+   애자일적용후기</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" >
+   웹을 지탱하는 기술</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" >
+   웹프로그래머를 위한 서블릿 컨테이너의 이해</option>
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" >
+   자바의 정석</option>
+    <option value="/clean_coders/" >
+   클린코더스 강의 정리</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>Finalizer attack</h1>
+    
+    
+    
+
+
+
+<p>참고 : <a href="https://www.ibm.com/developerworks/library/j-fv/j-fv-pdf.pdf">https://www.ibm.com/developerworks/library/j-fv/j-fv-pdf.pdf</a></p>
+
+<h2 id="how-to-attack">How to attack</h2>
+
+<p>Finalizers는 객체 생성할 때 취약점이 존재한다. finalizer의 개념은 java 메소드가 os로 리턴해야하는 자원을 해제 할 수있게 하는 것인데
+finalizer에서 자바 코드가 실행될 수 있으므로 아래와 같은 코드가 허용된다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Zombie</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Zombie</span> <span style="color:#111">zombie</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">finalize</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">zombie</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Zombie finalizer가 호출됐을 때 zombie static 변수에 this가 저장된다. 객체는 다시 접근할 수 있게 됐고 gc되지 않는다.</p>
+
+<p>더 교활한 버전은 부분적으로 구성된 오브젝트조차도 부활시킬 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Zombie2</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Zombie2</span> <span style="color:#111">zombie</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#75af00">Zombie2</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">value</span> <span style="color:#f92672">&lt;</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalArgumentException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Negative Zombie2 value&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">value</span> <span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">finalize</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">zombie</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>객체가 value 조건을 충족시키지 못하는 경우에도 finalizer로 작성할 수 있다. finalize () 메소드의 존재로 인해 value 인수에 대한 검사의 결과는 무효화된다.</p>
+
+<p>물론 아무도 위와 같은 코드를 작성하지는 않는다. 그러나 클래스가 subclassed된 경우 취약점이 발생할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">class</span> <span style="color:#75af00">Vulnerable</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">Integer</span> <span style="color:#111">value</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span>
+
+    <span style="color:#111">Vulnerable</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">value</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalArgumentException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Vulnerable value must be positive&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">value</span> <span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">.</span><span style="color:#75af00">toString</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AttackVulnerable</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Vulnerable</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Vulnerable</span> <span style="color:#111">vulnerable</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#75af00">AttackVulnerable</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">finalize</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">vulnerable</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">main</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">args</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">new</span> <span style="color:#111">AttackVulnerable</span><span style="color:#f92672">(-</span><span style="color:#111">1</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#00a8c8">catch</span> <span style="color:#f92672">(</span><span style="color:#111">Exception</span> <span style="color:#111">e</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">gc</span><span style="color:#f92672">();</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">runFinalization</span><span style="color:#f92672">();</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">vulnerable</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Vulnerable object &#34;</span> <span style="color:#f92672">+</span> <span style="color:#111">vulnerable</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34; created!&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>AttackVulnerable 클래스의 메인 메서드에서 새로운 AttackVulnerable 객체 생성을 시도한다. value가 -1이기 때문에 Exception이 발생하고
+catch 블록으로 온다. <code>System.gc()</code>와 <code>System.runFinalization()</code> 호출은 vm이 gc를 실행하고 모든 finalizer를 실행하도록 권장한다.</p>
+
+<p>이러한 호출은 공격이 성공하는 데 반드시 필요한 것은 아니지만 공격의 최종 결과를 보여준다. 즉, 값이 잘못된 Vulnerable 개체가 만들어진다.</p>
+
+<pre><code>java.lang.IllegalArgumentException: Vulnerable value must be positive
+Vulnerable object 0 created!
+
+Process finished with exit code 0
+</code></pre>
+
+<p>실행하면 위와 같은 결과가 나온다. 왜 Vulnerable value가 -1가 아니라 0일까? Vulnerable 생성자에서 인자 검사전까지는 value 할당을 하지 않은것을
+주목해라. 그래서 value는 초기값 0이다.</p>
+
+<p>이러한 종류의 공격은 명시적인 보안 검사를 우회하는 데 사용될 수도 있다. 아래의 예제는 현재 디렉토리에 write 권한이 없을 때 SecurityException이
+발생하도록 설계됐다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Insecure</span> <span style="color:#f92672">{</span>
+    <span style="color:#111">Integer</span> <span style="color:#111">value</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#75af00">Insecure</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">SecurityManager</span> <span style="color:#111">sm</span> <span style="color:#f92672">=</span> <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">getSecurityManager</span><span style="color:#f92672">();</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">sm</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">FilePermission</span> <span style="color:#111">fp</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">FilePermission</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;index&#34;</span><span style="color:#f92672">,</span> <span style="color:#d88200">&#34;write&#34;</span><span style="color:#f92672">);</span>
+            <span style="color:#111">sm</span><span style="color:#f92672">.</span><span style="color:#75af00">checkPermission</span><span style="color:#f92672">(</span><span style="color:#111">fp</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">value</span> <span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">.</span><span style="color:#75af00">toString</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AttackInsecure</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Insecure</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Insecure</span> <span style="color:#111">insecure</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#75af00">AttackInsecure</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">finalize</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">insecure</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">main</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">args</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">new</span> <span style="color:#111">AttackInsecure</span><span style="color:#f92672">(-</span><span style="color:#111">1</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#00a8c8">catch</span> <span style="color:#f92672">(</span><span style="color:#111">Exception</span> <span style="color:#111">e</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">gc</span><span style="color:#f92672">();</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">runFinalization</span><span style="color:#f92672">();</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">insecure</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Insecure object &#34;</span> <span style="color:#f92672">+</span> <span style="color:#111">insecure</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34; created!&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<pre><code>java -Djava.security.manager AttackInsecure
+java.security.AccessControlException: Access denied (java.io.FilePermission index write)
+Insecure object 0 created!
+</code></pre>
+
+<h2 id="how-to-avoid-the-attack">How to avoid the attack</h2>
+
+<p>Java Language Specification (JLS) 세번째 edition 까지는 initialized flag, subclassing 금지, final finalizer 생성 세가지였고
+불충분한 해결책이었다.</p>
+
+<p><strong>initialized flag</strong><br>
+객체가 정상적으로 생성될 때 flag값을 셋팅하고 메서드 호출 때마다 제일 먼저 저 flag 값을 검사하는 방법이다. 이 코딩 기법은 작성하기 번거롭고
+실수로 생략하기 쉽다. 그리고 subclassing을 통한 공격을 막을 수는 없다.</p>
+
+<p><strong>preventing subclssing</strong><br>
+클래스를 final로 선언함으로써 subclass 자체를 막아버린다. 하지만 이 기법은 확장성 자체를 없애버린다.</p>
+
+<p><strong>create a final finalizer</strong><br>
+final finalizer 메서드를 생성함으로써 subclass에서 finalizer 메서드 재사용을 금지시킨다. 이 접근의 단점은
+finalizer 존재가 그것이 없는 것보다 더 오래 살아 있다는것을 의미한다는 점이다.</p>
+
+<h2 id="a-newer-better-way">A newer, better way</h2>
+
+<p>추가 코드나 제한없이 이러한 종류의 공격을 막기위해 자바 설계자는 JLS를 수정하여 java.lang.Object가 생성되기 전에 exception이 생성자에서
+발생하면 finalize 메서드가 실행되지 않는다.</p>
+
+<p>그런데 java.lang.Object가 생성되기 전에 어떻게 exception이 발생할 수 있냐? 결국 모든 생성자의 첫행은 this() 또는 super()에 대한
+호출이어야 한다. 생성자에 명시적으로 호출이 포함되어 있지 않으면 super() 호출이 암시적으로 추가된다. 따라서 객체가 생성되기 전에 동일한 클래스
+또는 슈퍼 클래스의 다른 객체가 만들어져야 한다. 결국 생성되고 있는 메서드의 코드가 실행되기 전에 java.lang.Object 자체의 생성과
+모든 subclass의 생성이 이뤄진다.</p>
+
+<p>java.lang.Object가 생성되기 전에 예외를 throw하는 방법을 이해하려면, Object 생성 순서를 정확하게 이해해야한다. JLS는 순서를 명시적으로 작성했다.</p>
+
+<p>Object가 생성될 때 JVM은 다음과 같이 동작한다.
+1. 객체를 위한 공간을 할당한다.
+2. 객체의 모든 인스턴스 변수를 기본값으로 설정. 여기에는 객체의 수퍼 클래스에 있는 인스턴스 변수가 포함된다.
+3. 객체에 대한 파라미터 변수를 지정한다.
+4. 명시적 또는 암시적 생성자 호출 (생성자에서 this () 또는 super () 호출)을 처리한다.
+5. 클래스의 변수를 초기화한다.
+6. 생성자의 나머지 부분을 실행한다.</p>
+
+<p>요점은 생성자 내의 모든 코드가 처리되기 전에 생성자의 파라미터가 처리된다는 것이다.
+즉, 파라미터를 처리하는 동안 유효성 검사를 수행하면 예외를 throw하여 클래스가 finalize 되지 않도록 할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Invulnerable</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">int</span> <span style="color:#111">value</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span>
+
+    <span style="color:#111">Invulnerable</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">(</span><span style="color:#111">checkValues</span><span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">));</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">value</span> <span style="color:#f92672">=</span> <span style="color:#111">value</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#75af00">Invulnerable</span><span style="color:#f92672">(</span><span style="color:#111">Void</span> <span style="color:#111">checkValues</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Void</span> <span style="color:#75af00">checkValues</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">value</span> <span style="color:#f92672">&lt;=</span> <span style="color:#111">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalArgumentException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Invulnerable value must be positive&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#f92672">(</span><span style="color:#111">Integer</span><span style="color:#f92672">.</span><span style="color:#75af00">toString</span><span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>위 코드를 보면 public 생성자 Invulnerable에서 checkValues 메서드를 수행하고 그 결과로 private 생성자를 호출한다.
+이 메서드는 생성자가 super class의 생성자를 호출하기 전에 호출된다. 따라서 checkValues에 예외가 발생하면 Invulnerable 객체는
+finalize 되지 않는다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AttackInvulnerable</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Invulnerable</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">static</span> <span style="color:#111">Invulnerable</span> <span style="color:#111">vulnerable</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#75af00">AttackInvulnerable</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">value</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">finalize</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#111">vulnerable</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">this</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">main</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">[]</span> <span style="color:#111">args</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">try</span> <span style="color:#f92672">{</span>
+            <span style="color:#00a8c8">new</span> <span style="color:#111">AttackInvulnerable</span><span style="color:#f92672">(-</span><span style="color:#111">1</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#00a8c8">catch</span> <span style="color:#f92672">(</span><span style="color:#111">Exception</span> <span style="color:#111">e</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">gc</span><span style="color:#f92672">();</span>
+        <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">runFinalization</span><span style="color:#f92672">();</span>
+        <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">vulnerable</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Invulnerable object &#34;</span> <span style="color:#f92672">+</span> <span style="color:#111">vulnerable</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34;created !&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span> <span style="color:#00a8c8">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Attack failed&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<pre><code>java.lang.IllegalArgumentException: Invulnerable value must be positive
+Attack failed
+</code></pre>
+
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" title="직렬화"> <i class="fa fa-chevron-left"></i><label>직렬화</label></a>
+    <a class="nav nav-next" href="/gitflow/" title="Git Flow" style="margin-right: 0px;"><label>Git Flow</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+    
+
+    
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>

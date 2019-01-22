@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Effective Java(3rd edition 작업중) on 양봉수 블로그</title>
+    <link>/effective_java/</link>
+    <description>Recent content in Effective Java(3rd edition 작업중) on 양봉수 블로그</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ko-kr</language>
+    
+	<atom:link href="/effective_java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>객체의 생성과 삭제</title>
+      <link>/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/</guid>
+      <description>객체를 만들어야하는 시점과 그 방법, 객체 생성을 피해야 하는 경우와 그 방법, 적절한 순간에 객체가 삭제되도록 보장하는 방법, 그리고 삭제 전에 반드시 이루어져야 하는 청소 작업들을 관리하는 방법을 살펴본다.
+규칙1 : 생성자 대신 정적 팩터리 메서드를 사용할 수 없는지 생각해보라(Consider static factory methods instead of consturctors) 클래스를 통해 객체를 만드는 일반적인 방법(public 생성자 이용)말고 또 다른 방법이 있다. 바로 public static factory method를 만드는 것이다.
+public static Boolean valueOf(boolean b){ return b ?</description>
+    </item>
+    
+    <item>
+      <title>모든 객체의 공통 메서드</title>
+      <link>/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/</guid>
+      <description>Object에 정의된 비-final 메서드(equals, hashCode, toString, clone, finalize)의 명시적인 일반 규약들에 대해서 알아보자.(종료자 finalize는 제외) 추가로 Object의 메서드는 아니지만 특성이 비슷한 Comparable.compareTo도 알아보자.
+규칙10 : equals를 재정의할 때는 일반 규약을 따르라 equals를 재정의하지 않아도 되는 경우 1. 각각의 객체가 고유하다. 1. 값(value) 대신 활성 개체(active entity)를 나타내는 Thread 같은 클래스가 이 조건에 부합. 2. 클래스에 논리적 동일성 검사 방법이 있건 없건 상관없다. 1. Random 클래스는 equals 메서드가 큰 의미 없다.</description>
+    </item>
+    
+    <item>
+      <title>클래스와 인터페이스</title>
+      <link>/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/</guid>
+      <description>규칙15 : 클래스와 멤버의 접근 권한은 최소화하라 각 클래스와 멤버는 가능한 한 접근 불가능하도록 만들어라. 정보은닉 또는 캡슐화는 시스템을 구성하는 모듈 사이의 의존성을 낮춰서 개발 속도 및 유지보수에 효율적이다.
+클래스나 인터페이스 또는 멤버를 패키지의 공개 API로 만들어서는 곤란하다.
+객체 필드(instance field)는 절대로 public으로 선언하면 안된다. 변경 가능 public 필드를 가진 클래스는 다중 스레드에 안전하지 않다. 변경 불가능 객체를 참조하는 final 필드라 해도 public으로 선언하면 클래스 내부 데이터 표현 형태를 유연하게 바꿀 수 없게 된다.</description>
+    </item>
+    
+    <item>
+      <title>제네릭</title>
+      <link>/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/</guid>
+      <description>규칙26 : 새 코드에는 무인자 제네릭 자료형을 사용하지 마라 List&amp;lt;String&amp;gt;는 원소 자료형이 String인 리스트를 나타내는 형인자 자료형이다.
+각 제네릭 자료형은 새로운 무인자 자료형을 정의하는데, 무인자 자료형은 실 형인자 없이 사용되는 제네릭 자료형이다. ex) List list = new ArrayList&amp;lt;&amp;gt;(); 무인자 자료형 List는 제네릭 도입 이전의 인터페이스 자료형 List와 똑같이 동작한다. 하지만 제네릭 자료형을 형인자 없이 사용하면 안된다. 무인자 자료형을 쓰면 형 안전성이 사라지고, 제네릭의 장점 중 하나인 표현력 측면에서 손해를 보게 된다.</description>
+    </item>
+    
+    <item>
+      <title>enum과 어노테이션</title>
+      <link>/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/</guid>
+      <description>규칙34 : int 상수 대신 enum을 사용하라 // int를 사용한 enum 패턴 public static final int APPLE_FUJI = 0; public static final int APPLE_PIPPIN = 1; public static final int APPLE_GRANNY_SMITH = 2; public static final int ORANGE_NAVEL = 0; public static final int ORANGE_TEMPLE = 1; public static final int ORANGE_BLOOD = 2; 위의 코드는 형안전성 측면에서도 그렇고, 편의성 관점에서도 단점이 많다. String enum 패턴이라 불리는 것은 더 나쁜 패턴이다.</description>
+    </item>
+    
+    <item>
+      <title>람다와 스트림</title>
+      <link>/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/</guid>
+      <description>item44 : 표준 함수형 인터페이스를 사용해라 Java에 람다 (lambdas)가 생겨서 API를 작성하는 모범 사례가 많이 바뀌었다. 예를 들어, 템플릿 메서드 패턴은 이제 덜 매력적이다. 동일한 효과를 얻기 위해 함수 객체를 받는 static factory나 생성자가 모던한 대체제다. 더 일반적으로, 함수 객체를 파라미터로 받는 생성자나 메서드를 작성할거다. 올바른 함수형 파라미터 타입을 선택하는것은 주의가 필요하다.
+LinkedHashMap을 생각해보자. 아래의 removeEldestEntry 메서드를 오버라이딩해서 map에 put할 때마다 호출하려고 한다.
+protected boolean removeEldestEntry(Map.Entry&amp;lt;K,V&amp;gt; eldest) { return false; } 이 메서드가 true를 리턴하면, 맵은 eldest entry를 제거한다.</description>
+    </item>
+    
+    <item>
+      <title>메서드</title>
+      <link>/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/</guid>
+      <description>이 챕터는 메서드 디자인에 대해서 다룬다. parameter와 return value를 어떻게 다뤄야하는지, 메서드 시그니처를 어떻게 디자인해야 하는지 그리고 어떻게 문서화하는지.
+규칙 49 : 파라미터 유효성을 검사하라(Check parameters for validity) 메서드나 생성자를 구현할 때는 받을 수 있는 파라미터에 제한이 있는지 따져봐야 한다(예를 들어 index값은 음수면 안되거나, 객체 참조는 null이면 안되거나). 그리고 제한이 있다면 그 사실을 문서에 남기고 메서드 앞부분에서 검사하도록 해야 한다. 오류는 가급적 빨리 탐지해야한다.
+만약 파라미터 유효성을 검사하지 않으면 몇 가지 문제가 생길 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>일반적인 프로그래밍 원칙들</title>
+      <link>/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/</guid>
+      <description>규칙 57 : 지역 변수의 유효범위를 최소화하라 C와 같은 오래된 프로그래밍 언어는 지역 변수를 블록 앞부분에 선언한다. 그러나 고칠 필요가 있는 습관이다. 지역 변수의 유효범위를 최소화하는 가장 강력한 기법은, 처음으로 사용하는 곳에서 선언하는 것이다. 사용하기 전에 선언하면 프로그램의 의도를 알고자 소스 코드를 읽는 사람만 혼란스럽게 할 뿐이다. 실제로 변수가 사용될 때쯤 되면, 그 변수의 자료형과 초기값이 무엇이었는지는 잊어버리고 말 것이다.
+지역 변수를 너무 빨리 선언하면 유효범위가 너무 앞쪽으로 확장될 뿐 아니라, 너무 뒤쪽으로도 확장된다.</description>
+    </item>
+    
+    <item>
+      <title>예외</title>
+      <link>/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/</guid>
+      <description>규칙69 : 예외는 예외적 상황에만 사용하라 // 예외를 끔찍하게 남용한 사례. 이러면 곤란하다. try { int i = 0; while(true) range[i++].climb(); }catch(ArrayIndexOutOfBoundsException e){ } range 배열의 원소를 순회하는데 무한 루프를 돌다가 배열 범위 밖에 있는 첫 번째 요소를 참조하는 순간에 발생하는 ArrayIndexOutOfBoundsException 예외를 감지하고 무시하는 과정을 통해 순회를 종료시킨다. 이 코드를 다음과 같이 표준적인 관용구대로 작성했다면 모든 자바 프로그래머가 곧바로 이해했을 것이다.
+for (Mountain m : range) { m.climb(); } 그런데 예외를 써서 루프를 종료한 이유는 뭘까?</description>
+    </item>
+    
+    <item>
+      <title>병행성</title>
+      <link>/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/</guid>
+      <description>규칙66 : 변경 가능 공유 데이터에 대한 접근은 동기화하라 많은 프로그래머는 동기화(synchronization)를 상호 배제적인 관점, 그러니까 다른 스레드가 변경 중인 객체의 상태를 관측할 수 없어야 한다는 관점으로만 바라본다.
+이 관점에 따르면 객체는 일관된 상태를 갖도록 생성되며, 해당 객체를 접근하는 메서드는 그 객체에 락을 건다. 락을 건 메서드는 객체의 상태를 관측할 수 있으며, 선택적으로 객체 상태를 변경할 수도 있다. 하나의 일관된 상태에서 다른 일관된 상태로 전이시킬 수 있다는 것이다. 동기화 메커니즘을 적절히 사용하기만 하면, 모든 메서드가 항상 객체의 일관된 상태만 보도록 만들 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>직렬화</title>
+      <link>/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/</guid>
+      <description>규칙74 : Serializable 인터페이스를 구현할 때는 신중하라 클래스 선언부에 &amp;ldquo;implements Serializable&amp;rdquo;만 붙이면 직렬화 가능한 객체를 만드는 클래스를 구현할 수 있을 때도 있다. 너무 간단하기 때문에, 직렬화를 지원하기 위해 프로그래머 입장에서 해야 하는 일이 별로 없다는 잘못된 믿음이 만연해 있지만 사실은 훨씬 더 복잡하다.
+Serializable 구현과 관련된 가장 큰 문제는 일단 클래스를 릴리스하고 나면 클래스 구현을 유연하게 바꾸기 어려워진다. Serializable을 구현하면, 그 클래스의 바이트 스트림 인코딩도 공개 API의 일부가 되어 버린다.</description>
+    </item>
+    
+  </channel>
+</rss>

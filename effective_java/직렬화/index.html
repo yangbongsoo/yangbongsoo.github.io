@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>양봉수 블로그</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2019-01-22T18:50:12 KST">
+<title>직렬화 :: 양봉수 블로그</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "\/";
+</script>
+<meta name="description" content="">
+
+
+
+    
+  </head>
+  <body data-url="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="/">양봉수 블로그</a>
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/yangbongsoo"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/connection_reset/" class="dd-item
+        ">
+      <div>
+      <a href="/connection_reset/">Connection Reset</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/tshark/" class="dd-item
+        ">
+      <div>
+      <a href="/tshark/"><i class='fa fa-linux' ></i> 티샤크를 활용한 네트워크 트래픽 분석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/shellscript/" class="dd-item
+        ">
+      <div>
+      <a href="/shellscript/"><i class='fa fa-linux' ></i> 자주쓰는 쉘 스크립트 모음</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java8_in_action/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/java8_in_action/"><i class='fa fa-coffee' ></i> Java 8 in Action</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/java8_in_action/part1/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part1/">
+            Part1 기초
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-1 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-2 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">
+            Part3-1 효과적인 자바8 프로그래밍
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/"><i class='fa fa-coffee' ></i> 자바 성능 튜닝 이야기</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/">
+            내가 만든 프로그램의 속도를 알고 싶다
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/">
+            왜 자꾸 String을 쓰지 말라는거야
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/">
+            어디에 담아야 하는지
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/">
+            지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/">
+            static 제대로 한번 써 보자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/">
+            클래스 정보, 어떻게 알아낼 수 있나?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/">
+            로그는 반드시 필요한 내용만 찍자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/"><i class='fa fa-envira' ></i> Spring 개발 이슈모음</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/">
+            Spring Issue1
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/">
+            Spring Issue2
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/toby_spring/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/toby_spring/"><i class='fa fa-envira' ></i> 토비 스프링</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/">
+            정의, IoC DI개념, Bean 라이프사이클
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/">
+            오브젝트와 의존관계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/">
+            테스트
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/">
+            템플릿
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/">
+            서비스 추상화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/aop/" class="dd-item">
+        <div>
+          <a href="/toby_spring/aop/">
+            AOP
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/">
+            스프링 핵심 기술의 응용
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/">
+            스프링 프로젝트 시작하기
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" class="dd-item">
+        <div>
+          <a href="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/">
+            IoC 컨테이너와 DI
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/effective_java/" class="dd-item parent alwaysopen haschildren
+        ">
+      <div>
+      <a href="/effective_java/"><i class='fa fa-coffee' ></i> Effective Java(3rd edition 작업중)</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/">
+            객체의 생성과 삭제
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            모든 객체의 공통 메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/">
+            클래스와 인터페이스
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/">
+            제네릭
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" class="dd-item">
+        <div>
+          <a href="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/">
+            enum과 어노테이션
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/">
+            람다와 스트림
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/">
+            일반적인 프로그래밍 원칙들
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/">
+            병행성
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" class="dd-item active">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/">
+            직렬화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/finalizer-attack/" class="dd-item
+        ">
+      <div>
+      <a href="/finalizer-attack/"><i class='fa fa-coffee' ></i> Finalizer attack</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/gitflow/" class="dd-item
+        ">
+      <div>
+      <a href="/gitflow/">Git Flow</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/junit&#43;mockito_vs_groovy&#43;spock/" class="dd-item
+        ">
+      <div>
+      <a href="/junit&#43;mockito_vs_groovy&#43;spock/">JUnit&#43;Mockito vs Groovy&#43;Spock</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/singleton/" class="dd-item
+        ">
+      <div>
+      <a href="/singleton/">Singleton</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/understanding_the_tomcat_classpath/" class="dd-item
+        ">
+      <div>
+      <a href="/understanding_the_tomcat_classpath/"><i class='fa fa-coffee' ></i> Understanding The Tomcat Classpath</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/apache-and-tomcat/" class="dd-item
+        ">
+      <div>
+      <a href="/apache-and-tomcat/">apache and tomcat</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/identity/" class="dd-item
+        ">
+      <div>
+      <a href="/identity/">identity</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/nginx_gzip_option/" class="dd-item
+        ">
+      <div>
+      <a href="/nginx_gzip_option/">nginx gzip 옵션</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/specification_by_example/" class="dd-item
+        ">
+      <div>
+      <a href="/specification_by_example/">specification by example</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/what__why__how_living_documentation/" class="dd-item
+        ">
+      <div>
+      <a href="/what__why__how_living_documentation/">what why how living_documentation</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/"><i class='fa fa-coffee' ></i> 객체지향과 디자인패턴</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/">객체지향의 사실과 오해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/"><i class='fa fa-coffee' ></i> 네이버를 만든 기술 자바편</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/">대용량 아키텍처와 성능 튜닝</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/">
+            레퍼런스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/">
+            마이크로 서비스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/">
+            REST의 이해와 설계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/">마이바티스를 사용한 자바 퍼시스턴스 개발</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/">소프트웨어 품질관리(NHN은 이렇게한다)</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">실용주의프로그래머 익스트림프로그래밍</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/">애자일적용후기</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/">웹을 지탱하는 기술</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/"><i class='fa fa-coffee' ></i> 웹프로그래머를 위한 서블릿 컨테이너의 이해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/"><i class='fa fa-coffee' ></i> 자바의 정석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/clean_coders/" class="dd-item
+        ">
+      <div>
+      <a href="/clean_coders/"><i class='fa fa-coffee' ></i> 클린코더스 강의 정리</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/connection_reset/" >
+   Connection Reset</option>
+    <option value="/tshark/" >
+   티샤크를 활용한 네트워크 트래픽 분석</option>
+    <option value="/shellscript/" >
+   자주쓰는 쉘 스크립트 모음</option>
+    <option value="/java8_in_action/" >
+   Java 8 in Action</option> 
+      <option value="/java8_in_action/part1/" >- Part1 기초</option>
+      <option value="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-1 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-2 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >- Part3-1 효과적인 자바8 프로그래밍</option>
+  
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" >
+   자바 성능 튜닝 이야기</option> 
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" >- 내가 만든 프로그램의 속도를 알고 싶다</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" >- 왜 자꾸 String을 쓰지 말라는거야</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" >- 어디에 담아야 하는지</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" >- 지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" >- static 제대로 한번 써 보자</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" >- 클래스 정보, 어떻게 알아낼 수 있나?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" >- 로그는 반드시 필요한 내용만 찍자</option>
+  
+    <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" >
+   Spring 개발 이슈모음</option> 
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" >- Spring Issue1</option>
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" >- Spring Issue2</option>
+  
+    <option value="/toby_spring/" >
+   토비 스프링</option> 
+      <option value="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" >- 정의, IoC DI개념, Bean 라이프사이클</option>
+      <option value="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" >- 오브젝트와 의존관계</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" >- 테스트</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" >- 템플릿</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" >- 서비스 추상화</option>
+      <option value="/toby_spring/aop/" >- AOP</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" >- 스프링 핵심 기술의 응용</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" >- 스프링 프로젝트 시작하기</option>
+      <option value="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" >- IoC 컨테이너와 DI</option>
+  
+    <option value="/effective_java/" >
+   Effective Java(3rd edition 작업중)</option> 
+      <option value="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" >- 객체의 생성과 삭제</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 모든 객체의 공통 메서드</option>
+      <option value="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" >- 클래스와 인터페이스</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" >- 제네릭</option>
+      <option value="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" >- enum과 어노테이션</option>
+      <option value="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" >- 람다와 스트림</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 메서드</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" >- 일반적인 프로그래밍 원칙들</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" >- 병행성</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/"  selected>- 직렬화</option>
+  
+    <option value="/finalizer-attack/" >
+   Finalizer attack</option>
+    <option value="/gitflow/" >
+   Git Flow</option>
+    <option value="/junit&#43;mockito_vs_groovy&#43;spock/" >
+   JUnit&#43;Mockito vs Groovy&#43;Spock</option>
+    <option value="/singleton/" >
+   Singleton</option>
+    <option value="/understanding_the_tomcat_classpath/" >
+   Understanding The Tomcat Classpath</option>
+    <option value="/apache-and-tomcat/" >
+   apache and tomcat</option>
+    <option value="/identity/" >
+   identity</option>
+    <option value="/nginx_gzip_option/" >
+   nginx gzip 옵션</option>
+    <option value="/specification_by_example/" >
+   specification by example</option>
+    <option value="/what__why__how_living_documentation/" >
+   what why how living_documentation</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" >
+   객체지향과 디자인패턴</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" >
+   객체지향의 사실과 오해</option>
+    <option value="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" >
+   네이버를 만든 기술 자바편</option>
+    <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" >
+   대용량 아키텍처와 성능 튜닝</option> 
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" >- 레퍼런스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" >- 마이크로 서비스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" >- REST의 이해와 설계</option>
+  
+    <option value="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" >
+   마이바티스를 사용한 자바 퍼시스턴스 개발</option>
+    <option value="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" >
+   소프트웨어 품질관리(NHN은 이렇게한다)</option>
+    <option value="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >
+   실용주의프로그래머 익스트림프로그래밍</option>
+    <option value="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" >
+   애자일적용후기</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" >
+   웹을 지탱하는 기술</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" >
+   웹프로그래머를 위한 서블릿 컨테이너의 이해</option>
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" >
+   자바의 정석</option>
+    <option value="/clean_coders/" >
+   클린코더스 강의 정리</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>직렬화</h1>
+    
+    
+    
+    
+
+<h3 id="규칙74-serializable-인터페이스를-구현할-때는-신중하라">규칙74 : Serializable 인터페이스를 구현할 때는 신중하라</h3>
+
+<p>클래스 선언부에 &ldquo;implements Serializable&rdquo;만 붙이면 직렬화 가능한 객체를 만드는 클래스를 구현할 수 있을 때도 있다. 너무 간단하기 때문에, 직렬화를 지원하기 위해 프로그래머 입장에서 해야 하는 일이 별로 없다는 잘못된 믿음이 만연해 있지만 사실은 훨씬 더 복잡하다.</p>
+
+<p><strong>Serializable 구현과 관련된 가장 큰 문제는 일단 클래스를 릴리스하고 나면 클래스 구현을 유연하게 바꾸기 어려워진다.</strong> Serializable을 구현하면, 그 클래스의 바이트 스트림 인코딩도 공개 API의 일부가 되어 버린다. 따라서 아무리 잘 설계한 직렬화 형식도 클래스 진화라는 관점에서 보면 족쇄가 될 수 있다.</p>
+
+<p><strong>두 번째 문제는 버그나 보안 취약점이 발생할 가능성이 높아진다.</strong> 보통 객체는 생성자를 통해 생성한다. 직렬화는 언어 외적인 객체 생성 메커니즘이다. 기본 동작을 받아들이건 재정의 하건 간에, 역직렬화는 생성자와 동일한 이슈를 갖고 있는 &ldquo;숨은 생성자&rdquo;다. 역직렬화 과정에 관계된 생성자가 명시적으로 존재하지 않기 때문에 불변식 훼손이나 불법 접근 문제에 쉽게 노출된다.</p>
+
+<p><strong>세 번째 문제는 새 버전 클래스를 내놓기 위한 테스트 부담이 늘어난다는 것이다.</strong> 직렬화 가능 클래스를 수정할 때는, 새 릴리스에서 만들고 직렬화한 객체를 예전 릴리스에서 역직렬화할 수 있는지, 그리고 그 역도 가능한지 검사하는 것이 중요하다.</p>
+
+<p><strong>상속을 염두에 두고 설계하는 클래스는 Serializable을 구현하지 않는 것이 바람직하다. 또한 인터페이스는 가급적 Serializable을 상속하지 말아야 한다.</strong> 하지만 예를 들어 Serializable을 구현하는 객체만 참여가 가능한 프레임워크가 있을 때, 이런 프레임워크를 이용하려면 클래스나 인터페이스가 Serializable을 구현하거나 계승하도록 해야 할 것이다.</p>
+
+<p>객체 필드를 갖는 클래스를 직렬화 가능하고 계승 가능한 클래스로 구현할 때는 반드시 조심해야 할 것이 하나 있다. 객체 필드가 기본값으로 초기화되면 위배되는 불변식이 있는 경우에는 아래의 readObjectNoData 메서드를 클래스에 반드시 추가해야 한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 상태유지 계승 가능 직렬화 가능
+</span><span style="color:#75715e">// 클래스에 대한 readObjectNoData 메서드 
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">readObjectNoData</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">InvalidObjectException</span> <span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">InvalidObjectException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Stream data requied&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><strong>내부 클래스는 Serializable을 구현하면 안된다.</strong> 내부 클래스에는 바깥 객체에 대한 참조를 보관하고 바깥 유효범위의 지역 변수 값을 보관하기 위해 컴파일러가 자동으로 생성하는 인위생성 필드(synthetic field)가 있다. 익명 클래스나 지역 클래스 이름과 마찬가지로, 언어 명세서에는 이런 필드가 클래스 정의에 어떻게 들어맞는지 나와 있지 않다. 따라서 내부 클래스의 직렬화 형식은 정의될 수 없다. 하지만 정적 멤버 클래스는 Serializable을 구현해도 된다.</p>
+
+<p>클래스를 설계할 때 완전히 Serializable을 구현하고 싶지는 않지만 그렇다고 하위 클래스의 Serializable 구현을 금하고 싶지도 않다면 무인자 생성자를 제공하는 것이 방법이다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 직렬화가 불가능한 상태유지(stateful) 클래스.
+</span><span style="color:#75715e">// 하지만 직렬화가 가능한 하위 클래스를 만들 수 있다.
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">abstract</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AbstractFoo</span><span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">int</span> <span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#111">y</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 상태
+</span><span style="color:#75715e"></span>  
+  <span style="color:#75715e">// 아래 enum과 필드는 초기화 과정을 추적하기 위한 것이다.
+</span><span style="color:#75715e"></span>  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">enum</span> <span style="color:#111">State</span> <span style="color:#f92672">{</span> <span style="color:#111">NEW</span><span style="color:#f92672">,</span> <span style="color:#111">INITIALIZING</span><span style="color:#f92672">,</span> <span style="color:#111">INITIALIZED</span> <span style="color:#f92672">};</span>
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">AtomicReference</span><span style="color:#f92672">&lt;</span><span style="color:#111">State</span><span style="color:#f92672">&gt;</span> <span style="color:#111">init</span> <span style="color:#f92672">=</span> 
+    <span style="color:#00a8c8">new</span> <span style="color:#111">AtomicReference</span><span style="color:#f92672">&lt;</span><span style="color:#111">State</span><span style="color:#f92672">&gt;(</span><span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">NEW</span><span style="color:#f92672">);</span>
+    
+  <span style="color:#00a8c8">public</span> <span style="color:#75af00">AbstractFoo</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">int</span> <span style="color:#111">y</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#111">initialize</span><span style="color:#f92672">(</span><span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#111">y</span><span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">// 이 생성자와 그 아래 메서드는 하위 클래스의 readObject 메서드가
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 상태를 초기화할 수 있도록 하기 위한 것이다.
+</span><span style="color:#75715e"></span>  <span style="color:#00a8c8">protected</span> <span style="color:#75af00">AbstractFoo</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#f92672">}</span>
+  <span style="color:#00a8c8">protected</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">initialize</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">int</span> <span style="color:#111">y</span><span style="color:#f92672">){</span>
+    <span style="color:#00a8c8">if</span> <span style="color:#f92672">(!</span><span style="color:#111">init</span><span style="color:#f92672">.</span><span style="color:#75af00">compareAndSet</span><span style="color:#f92672">(</span><span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">NEW</span><span style="color:#f92672">,</span> <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">INITIALIZING</span><span style="color:#f92672">))</span>
+      <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalStateException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Already initialized&#34;</span><span style="color:#f92672">);</span>
+    
+    <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">x</span> <span style="color:#f92672">=</span> <span style="color:#111">x</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">y</span> <span style="color:#f92672">=</span> <span style="color:#111">y</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">...</span><span style="color:#75715e">//원래 생성자가 하던 나머지 작업
+</span><span style="color:#75715e"></span>    <span style="color:#111">init</span><span style="color:#f92672">.</span><span style="color:#75af00">set</span><span style="color:#f92672">(</span><span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">INITIALIZED</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">// 이 메서드들은 하위 클래스의 writeObject 메서드에 의해 객체가
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 수동적으로 직렬화될 수 있도록 내부 상태 정보를 제공하는 역할을 한다.
+</span><span style="color:#75715e"></span>  <span style="color:#00a8c8">protected</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#111">checkInit</span><span style="color:#f92672">();</span> <span style="color:#00a8c8">return</span> <span style="color:#111">x</span><span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+  <span style="color:#00a8c8">protected</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#111">checkInit</span><span style="color:#f92672">();</span> <span style="color:#00a8c8">return</span> <span style="color:#111">y</span><span style="color:#f92672">;</span> <span style="color:#f92672">}</span>
+  
+  <span style="color:#75715e">// 모든 public 및 protected 객체 메서드에서 반드시 호출해야 하는 메서드
+</span><span style="color:#75715e"></span>  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">checkInit</span><span style="color:#f92672">(){</span>
+    <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">init</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">!=</span> <span style="color:#111">State</span><span style="color:#f92672">.</span><span style="color:#75af00">INITIALIZED</span><span style="color:#f92672">)</span>
+      <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">IllegalStateException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Uninitialized&#34;</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#f92672">...</span> <span style="color:#75715e">// 이하 생략
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>AbstractFoo의 모든 public 및 protected 객체 메서드는 다른 작업을 하기 전에 반드시 checkInit 메서드를 호출해야 한다. 잘못 작성된 하위 클래스가 객체 초기화를 제대로 하지 못한 상태에서 다른 메서드를 호출하면 재빨리, 그리고 깔끔하게 실패하도록 하기 위한 것이다. init 필드가 원자적 참조 필드라는 것에 주의하자. 어떤 악의적 사용자가 오더라도 객체 무결성을 보존할 수 있도록 하기 위한 것이다.</p>
+
+<p>이런 조치가 없었다면? 가령 어떤 스레드가 객체에 initialize를 호출하는 순간에 두 번째 스레드가 그 객체를 사용하려 한다고 해 보자. 그 두 번째 스레드는 상태가 깨진 객체를 이용하게 될 수 있다. compareAndSet을 사용해 enum에 대한 참조를 원자적으로 조작하는 이 패턴은, 다 목적 스레드 안전 상태 기계를 구현하ㅣ 좋다. 이 메커니즘을 갖추고 나면, 직렬화 가능 하위 클래스를 구현하는 것은 쉽다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 직렬화 불가능 상태유지(stateful) 클래스의 직렬화 가능 하위 클래스
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Foo</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">AbstractFoo</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span><span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">readObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectInputStream</span> <span style="color:#111">s</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">throw</span> <span style="color:#111">IOException</span><span style="color:#f92672">,</span> <span style="color:#111">ClassNotFountException</span><span style="color:#f92672">{</span>
+      <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">defaultReadObject</span><span style="color:#f92672">();</span>
+      
+      <span style="color:#75715e">// 상위 클래스 상태를 수동으로 역직렬화 한 다음 초기화
+</span><span style="color:#75715e"></span>      <span style="color:#00a8c8">int</span> <span style="color:#111">x</span> <span style="color:#f92672">=</span> <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">readInt</span><span style="color:#f92672">();</span>
+      <span style="color:#00a8c8">int</span> <span style="color:#111">y</span> <span style="color:#f92672">=</span> <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">readInt</span><span style="color:#f92672">();</span>
+      <span style="color:#111">initialize</span><span style="color:#f92672">(</span><span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#111">y</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">writeObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectOutputStream</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span> <span style="color:#f92672">{</span>
+      <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">defaultWriteObject</span><span style="color:#f92672">();</span>
+      
+      <span style="color:#75715e">// 상위 클래스 상태를 수동으로 직렬화
+</span><span style="color:#75715e"></span>      <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">writeInt</span><span style="color:#f92672">(</span><span style="color:#111">getX</span><span style="color:#f92672">());</span>
+      <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">writeInt</span><span style="color:#f92672">(</span><span style="color:#111">getY</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#75715e">// 생성자는 이 메커니즘과 상관없음
+</span><span style="color:#75715e"></span>    <span style="color:#00a8c8">public</span> <span style="color:#75af00">Foo</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">int</span> <span style="color:#111">y</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#00a8c8">super</span><span style="color:#f92672">(</span><span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#111">y</span><span style="color:#f92672">);</span> <span style="color:#f92672">}</span>
+    
+    <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">long</span> <span style="color:#111">serialVersionUID</span> <span style="color:#f92672">=</span> <span style="color:#111">2213124123213123L</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<h3 id="규칙75-사용자-지정-직렬화-형식을-사용하면-좋을지-따져-보라">규칙75 : 사용자 지정 직렬화 형식을 사용하면 좋을지 따져 보라</h3>
+
+<p>Serializable을 구현한 클래스를 만들면서 기본 직렬화 형식을 그대로 이용하면, 다음번 릴리스때 기존 구현을 빼버리는것이 불가능해진다. 그 직렬화 형식에 영원히 갇혀버리게 되는 것이다. 따라서 <strong>어떤 직렬화 형식이 적절할지 따져보지도 않고 기본 직렬화 형식을 그대로 받아들이지 마라.</strong></p>
+
+<p>어떤 객체의 기본 직렬화 형식은 해당 객체가 루트인 객체 그래프의 물리적 표현을 나름 효과적으로 인코딩한 것이다. 다시 말해 객체 안에 담긴 데이터와, 해당 객체를 통해 접근할 수 있는 모든 객체에 담긴 데이터를 기술한다. 또한 이 객체들이 서로 연결된 토폴로지(topology)도 기술한다. 그런데 <strong>어떤 객체의 가장 효과적인 직렬화 형식은 해당 객체가 나타내는 논리적 데이터만 담아야 하며, 물리적 표현과는 무관해야 한다. 기본 직렬화 형식은 그 객체의 물리적 표현이 논리적 내용과 동일할 때만 적절하다.</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 기본 직렬화 형식을 그대로 써도 좋은 클래스 후보
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Name</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span> <span style="color:#f92672">{</span>
+	
+	<span style="color:#75715e">//성(last name) null이 될 수 없다.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//@Serial
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">String</span> <span style="color:#111">lastName</span><span style="color:#f92672">;</span>
+
+	<span style="color:#75715e">//이름(first name) null이 될 수 없다.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//@Serial
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">String</span> <span style="color:#111">fisrtName</span><span style="color:#f92672">;</span>
+
+	<span style="color:#75715e">//중간 이름(middle name) 없을 때는 null이다.
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">//@Serial
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">String</span> <span style="color:#111">middleName</span><span style="color:#f92672">;</span>
+
+	<span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#75715e">// 이하 생략
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>논리적으로 말해서 어떤 사람의 이름은 성, 이름, 그리고 중간 이름을 나타내는 문자열 세 개로 구성된다. Name에 선언된 객체 필드들은 그 논리적 내용을 충실히 반영한다. <strong>설사 기본 직렬화 형식이 만족스럽다 하더라도, 불변식이나 보안 조건을 만족시키기 위해서는 readObject 메서드를 구현해야 마땅한 경우도 많다.</strong> lastName, fisrtName, middleName은 private 필드임에도 문서화 주석이 달려있다는 것에 주의하자. 이 private 필드들이 pulbic API, 즉 클래스의 직렬화 형식을 규정하기 때문이며, 그래서 반드시 문서화해야 한다. @Serial 태그는 Javadoc 유틸리티에게 직렬화 형식을 다루는 특별한 페이지로 해당 문서를 분리하라는 지시를 내린다.</p>
+
+<p>Name과는 정반대 격인 클래스도 하나 살펴보자. 이 클래스는 문자열의 리스트를 나타낸다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 기본 직렬화 형식이 쓸만하지 않은 클래스 사례
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">StringList</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span> <span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">int</span> <span style="color:#111">size</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span>
+	<span style="color:#00a8c8">private</span> <span style="color:#111">Entry</span> <span style="color:#111">head</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Entry</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span> <span style="color:#f92672">{</span>
+		<span style="color:#111">String</span> <span style="color:#111">data</span><span style="color:#f92672">;</span>
+		<span style="color:#111">Entry</span> <span style="color:#111">next</span><span style="color:#f92672">;</span>
+		<span style="color:#111">Entry</span> <span style="color:#111">previous</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#960050;background-color:#1e0010">…</span><span style="color:#75715e">// 이하 생략
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>논리적으로 말해서 이 클래스는 문자열 리스트를 표현한다. 물리적으로 보자면 이 리스트는 이중 연결 리스트다. 기본 직렬화 형태를 그대로 받아들일 경우, 모든 연결 리스트 항목과 항목 간 양방향 연결 구조가 직렬화 형식에 그대로 반영될 것이다. 객체의 물리적 표현 형태가 논리적 내용과 많이 다를 경우 기본 직렬화 형식을 그대로 받아들이면 네 가지 문제가 생기게 된다.
+1. 공개 API가 현재 내부 표현 형태에 영원히 종속된다.
+2. 너무 많은 공간을 차지하는 문제가 생길 수 있다.
+3. 너무 많은 시간을 소비하는 문제가 생길 수 있다.
+4. 스팩 오버플로 문제가 생길 수 있다.</p>
+
+<p>StringList의 적절한 직렬화 형식은 그저 리스트에 담기는 문자열의 수 다음에 실제 문자열들이 오는 형태일 것이다. StringList의 논리적 데이터 형태만을 나타내는 형식으로서, 물리적 표현 형태에 대한 세부사항은 제거된 것이다. 아래의 StringList 코드에는 이 직렬화 형식을 구현하는 writeObject와 readObject 메서드가 포함되어 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 사용자 정의 직렬화 형식을 이용하는 StringList
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">StringList</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span> <span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">transient</span> <span style="color:#00a8c8">int</span> <span style="color:#111">size</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span>
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">transient</span> <span style="color:#111">Entry</span> <span style="color:#111">head</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span>
+
+	<span style="color:#75715e">// 더 이상 Serializable일 필요가 없음 ! 
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">Entry</span> <span style="color:#f92672">{</span>
+		<span style="color:#111">String</span> <span style="color:#111">data</span><span style="color:#f92672">;</span>
+		<span style="color:#111">Entry</span> <span style="color:#111">next</span><span style="color:#f92672">;</span>
+		<span style="color:#111">Entry</span> <span style="color:#111">previous</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#75715e">// 주어진 문자열을 리스트에 추가 
+</span><span style="color:#75715e"></span>	<span style="color:#111">pulbic</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#f92672">}</span>
+
+	<span style="color:#75715e">/**
+</span><span style="color:#75715e">	* this가 가리키는 {@code StringList} 객체를 직렬화
+</span><span style="color:#75715e">	*
+</span><span style="color:#75715e">	*@serialData 리스트의 크기(리스트 내 문자열 개수)가 먼저 기록되고
+</span><span style="color:#75715e">	*({@code int}), 그 다음에는 모든 문자열({@code String} 각각)이 순서대로 기록된다.
+</span><span style="color:#75715e">	*
+</span><span style="color:#75715e">	*/</span>
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">writeObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectOutputStream</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span> <span style="color:#f92672">{</span>
+		<span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">defaultWriteObject</span><span style="color:#f92672">();</span>
+		<span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">writeInt</span><span style="color:#f92672">(</span><span style="color:#111">size</span><span style="color:#f92672">);</span>
+
+		<span style="color:#75715e">// 순서대로 모든 원소 기록
+</span><span style="color:#75715e"></span>		<span style="color:#00a8c8">for</span><span style="color:#f92672">(</span><span style="color:#111">Entry</span> <span style="color:#111">e</span> <span style="color:#f92672">=</span> <span style="color:#111">head</span><span style="color:#f92672">;</span> <span style="color:#111">e</span> <span style="color:#f92672">!=</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">;</span> <span style="color:#111">e</span> <span style="color:#f92672">=</span> <span style="color:#111">e</span><span style="color:#f92672">.</span><span style="color:#75af00">next</span><span style="color:#f92672">)</span>
+			<span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">writeObject</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">.</span><span style="color:#75af00">data</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">readObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectInputStream</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">,</span> <span style="color:#111">ClassNotFoundException</span> <span style="color:#f92672">{</span>
+		<span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">defaultReadObject</span><span style="color:#f92672">();</span>
+		<span style="color:#00a8c8">int</span> <span style="color:#111">numElements</span> <span style="color:#f92672">=</span> <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">readInt</span><span style="color:#f92672">();</span>
+
+		<span style="color:#75715e">// 모든 원소를 읽어 리스트에 저장
+</span><span style="color:#75715e"></span>		<span style="color:#00a8c8">for</span><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">i</span> <span style="color:#f92672">=</span> <span style="color:#111">0</span><span style="color:#f92672">;</span> <span style="color:#111">i</span><span style="color:#f92672">&lt;</span><span style="color:#111">numElements</span><span style="color:#f92672">;</span> <span style="color:#111">i</span><span style="color:#f92672">++)</span>
+			<span style="color:#111">add</span><span style="color:#f92672">((</span><span style="color:#111">String</span><span style="color:#f92672">)</span> <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">readObject</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+
+	<span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#75715e">// 이하 생략
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>writeObject가 맨 처음으로 defaultWriteObject를 호출하고 있음에 유의하자. readObject가 처음으로 하는 것도 defaultReadObject를 호출하는 것이다. StringList의 모든 필드가 transient임에도 말이다. 객체의 모든 필드가 transient일 때는 defaultWriteObject나 defaultReadObject를 호출하지 않는 것도 기술적으로 가능하긴 하지만 권장하는 사항은 아니다.</p>
+
+<p><strong>어떤 직렬화 형식을 이용하건, 직렬화 가능 클래스를 구현할 때는 직렬 버전 UID를 명시적으로 선언해야 한다.</strong> 그렇게 하면 직렬 버전 UID 때문에 생길 수 있는 잠재적 호환성 문제가 사라진다.  성능이 조금 개선되는 효과도 있다. 직렬 버전 UID를 지정하지 않으면 실행시간에 UID를 만드느라 시간이 많이 걸리는 계산을 하게 된다. 직렬 버전 UID를 선언하는 것은 간단하다. 클래스에 아래의 한줄을 추가하기만 하면 된다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">long</span> <span style="color:#111">serialVersionUID</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span><span style="color:#111">무작위로</span> <span style="color:#111">고른</span> <span style="color:#111">Long</span> <span style="color:#111">값</span><span style="color:#f92672">&gt;;</span></code></pre></div>
+<p>새 클래스를 만드는 경우에는 위의 <code>&lt;&gt;</code> 자리에 무슨 값을 넣건 상관없다.</p>
+
+<h3 id="규칙76-readobject-메서드는-방어적으로-구현하라">규칙76 : readObject 메서드는 방어적으로 구현하라</h3>
+
+<p>readObject 메서드가 실질적으로는 public 생성자나 마찬가지고 생성자를 구현할 때와 같은 점에 주의해야 한다. 생성자와 마찬가지로 인자의 유효성을 검사해야 하고 필요하다면 인자를 방어적으로 복사해야 한다. readObject 메서드를 구현할 때 이런 사항들을 망각하면 공격자는 쉽게 클래스의 불변식을 망가뜨릴 수 있게 된다. <strong>간단히 이야기해서, readObject는 바이트 스트림을 인자로 받는 생성자다. 일반적으로 이 바이트 스트림은 정상적인 과정을 통해 만들어진 객체를 직렬화한 결과다.</strong> 문제는 인공적으로 만들어진 바이트 스트림을 readObject에 인자로 넘길 때 생긴다. 클래스 불변식을 위반하는 객체를 만들어 낼 수 있게 되는 것이다.</p>
+
+<p>객체를 역으로 직렬화할 때는 클라리언트가 가질 수 없어야 하는 객체 참조를 담은 모든 필드를 방어적으로 복사하도록 해야 한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 방어적 복사와 유효성 검사를 모두 시행하는 readObject 메서드
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">readObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectInputStream</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">,</span> <span style="color:#111">ClassNotFoundException</span> <span style="color:#f92672">{</span>
+  <span style="color:#111">s</span><span style="color:#f92672">.</span><span style="color:#75af00">defaultReadObject</span><span style="color:#f92672">();</span>
+  
+  <span style="color:#75715e">// 모든 변경 가능 필드를 방어적으로 복사
+</span><span style="color:#75715e"></span>  <span style="color:#111">start</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Date</span><span style="color:#f92672">(</span><span style="color:#111">start</span><span style="color:#f92672">.</span><span style="color:#75af00">getTime</span><span style="color:#f92672">());</span>
+  <span style="color:#111">end</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Date</span><span style="color:#f92672">(</span><span style="color:#111">end</span><span style="color:#f92672">.</span><span style="color:#75af00">getTime</span><span style="color:#f92672">());</span>
+  
+  <span style="color:#75715e">// 불변식이 만족되는지 검사
+</span><span style="color:#75715e"></span>  <span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">start</span><span style="color:#f92672">.</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">end</span><span style="color:#f92672">)</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">0</span><span style="color:#f92672">)</span>
+      <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">InvalidObjectException</span><span style="color:#f92672">(</span><span style="color:#111">start</span> <span style="color:#f92672">+</span> <span style="color:#d88200">&#34; after &#34;</span> <span style="color:#f92672">+</span> <span style="color:#111">end</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>유효성 검사 이전에 방어적 복사를 시행한다는 점과 final로 선언된 필드에는 방어적 복사를 할 수 없기 때문에 start와 end가 비-final인 것도 주의하자. <strong>릴리즈 1.4부터 방어적 복사 없이도 악의적 객체 참조 공격을 막을 수 있도록 하기 위해 고안된 writeUnshared와 readUnshared 메서드는 사용하지 마라. 필요한 안전성을 제공하지 못한다.</strong></p>
+
+<p>readObject 메서드와 생성자에는 한 가지 유사성이 더 있다. readObject 메서드는 재정의 가능 메서드를 직접적이건 간접적이건 호출해서는 안 된다. 이 규칙을 위반할 경우, 하위 클래스 객체의 상태가 완전히 역직렬화 되기 전에 재정의한 메서드가 실행될 것이며 그 결과로 오류가 발생할 것이다.</p>
+
+<p><strong>요약하자면, readObject 메서드를 구현할 때는 public 생성자를 구현할 때와 같은 마음가짐을 가지라는 것이다.</strong></p>
+
+<h3 id="규칙77-개체-통제가-필요하다면-readresolve-대신-enum-자료형을-이용하라">규칙77 : 개체 통제가 필요하다면 readResolve 대신 enum 자료형을 이용하라</h3>
+
+<p>싱글턴 클래스를 만들어도 implements Serializable을 붙이는 순간 이 클래스는 더 이상 싱글턴 클래스가 아니다. 역직렬화되면서 생성된 객체는 초기화될 당시에 만들어진 객체와 다르다. 이때 readResolve를 이용하면 readObject가 만들어낸 객체를 다른 것으로 대체할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// instance control을 위해 readResolve를 활용한 사례
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#111">Object</span> <span style="color:#75af00">readResolve</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	<span style="color:#75715e">//유일한 객체를 반환하도록 하고 여기로 오는 바이트 스트림은 GC 대상이 되도록 한다.
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">return</span> <span style="color:#111">INSTANCE</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>이 메서드는 역으로 직렬화된 객체는 무시하고 클래스가 초기화될 당시에 만들어진 유일한 객체를 반환한다. <strong>사실 instance control을 위해 readResolve를 활용 할 때는 객체 참조 자료형으로 선언된 모든 객체 필드를 반드시 transient로 선언해야 한다.</strong></p>
+
+<p>Enum으로 싱글턴을 구현하면 선언된 상수 이외의 다른 객체는 존재할 수 없다는 확실한 보장이 생긴다.</p>
+
+<h3 id="규칙78-직렬화된-객체-대신-직렬화-프락시를-고려해-보라">규칙78 : 직렬화된 객체 대신 직렬화 프락시를 고려해 보라</h3>
+
+<p>Serializable 인터페이스를 구현하겠다고 결정을 내리게 되면 버그나 보안 결함이 생길 가능성이 높아진다. 일반 생성자 대신 언어 외적인 메커니즘을 통해 객체를 생성할 수 있게 되기 때문이다. 이런 위험을 줄이기 위한 방법으로 직렬화 프락시 패턴이 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Period 클래스의 직렬화 프락시
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">SerializationProxy</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Serializable</span> <span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">Date</span> <span style="color:#111">start</span><span style="color:#f92672">;</span>
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">final</span> <span style="color:#111">Date</span> <span style="color:#111">end</span><span style="color:#f92672">;</span>
+  
+  <span style="color:#111">SerializationProxy</span><span style="color:#f92672">(</span><span style="color:#111">Period</span> <span style="color:#111">p</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">start</span> <span style="color:#f92672">=</span> <span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">start</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">end</span> <span style="color:#f92672">=</span> <span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">end</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+  
+  <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">final</span> <span style="color:#00a8c8">long</span> <span style="color:#111">serialVersionUID</span> <span style="color:#f92672">=</span> <span style="color:#111">2344939929329329L</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 아무 수가 가능 
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p>우선 바깥 클래스 객체의 논리적 상태를 간결하게 표현하는 직렬화 가능 클래스를 private static 중첩 클래스로 설계한다. 이 중첩 클래스를 직렬화 프락시라고 부르는데, 바깥 클래스를 인자 자료형으로 사용하는 생성자를 하나만 가진다. 이 생성자는 인자에서 데이터를 복사하기만 한다. 일관성 검사를 할 필요도 없고, 방어적 복사를 할 필요도 없다. 설계상 직렬화 프락시의 기본 직렬화 형식은 바깥 클래스의 완벽한 직렬화 형태다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 직렬화 프락시 패턴을 구현하기 위한 writeReplace 메서드
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#111">Object</span> <span style="color:#75af00">writeReplace</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">SerializationProxy</span><span style="color:#f92672">(</span><span style="color:#00a8c8">this</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>프락시를 추가한 다음 바깥 클래스 아래에 writeReplace 메서드를 구현한다. 이 메서드는 직렬화 프락시가 있는 클래스라면 아무 수정 없이 그대로 사용할 수 있다. <strong>이 메서드가 있으면 직렬화 시스템은 바깥 클래스 객체 대신 SerializationProxy 객체를 직렬화한다.</strong> 다시 말해 writeReplace 메서드는 직렬화가 이루어지기 전에 바깥 클래스 객체를 직렬화 프락시 객체로 변환한다.</p>
+
+<p>바깥 클래스로 직렬화된 객체를 악의적으로 만들 수 있기 때문에 readObject 메서드를 추가한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 직렬화 프락시 패턴 구현을 위한 readObject 메서드
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">readObject</span><span style="color:#f92672">(</span><span style="color:#111">ObjectInputStream</span> <span style="color:#111">stream</span><span style="color:#f92672">)</span>
+  <span style="color:#00a8c8">throws</span> <span style="color:#111">InvalidObjectException</span><span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">InvalidObjectException</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;Proxy required&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>마지막으로 SerializationProxy 클래스에 자기와 논리적으로 동일한 바깥 클래스 객체를 반환하는 readResolve 메서드를 추가해야 한다. 이 메서드가 있으면 직렬화 시스템은 역직렬화를 끝내자마자 직렬화 프락시 객체를 다시 바깥 클래스 객체로 변환하게 된다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Period.SerializationProxy의 readResolve 메서드 
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">private</span> <span style="color:#111">Object</span> <span style="color:#75af00">readResolve</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+  <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Period</span><span style="color:#f92672">(</span><span style="color:#111">start</span><span style="color:#f92672">,</span> <span style="color:#111">end</span><span style="color:#f92672">);</span> <span style="color:#75715e">// public 생성자 이용
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span></code></pre></div>
+<p><strong>마지막으로 직렬화 프락시 패턴은 클라이언트가 확장 할 수 있는 클래스에는 적용할 수 없다.</strong></p>
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" title="병행성"> <i class="fa fa-chevron-left"></i><label>병행성</label></a>
+    <a class="nav nav-next" href="/finalizer-attack/" title="Finalizer attack" style="margin-right: 0px;"><label>Finalizer attack</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+    
+
+    
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>

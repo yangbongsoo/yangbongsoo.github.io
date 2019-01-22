@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>양봉수 블로그</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2019-01-22T18:50:12 KST">
+<title>정의, IoC DI개념, Bean 라이프사이클 :: 양봉수 블로그</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "\/";
+</script>
+<meta name="description" content="">
+
+
+
+    
+  </head>
+  <body data-url="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="/">양봉수 블로그</a>
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/yangbongsoo"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/connection_reset/" class="dd-item
+        ">
+      <div>
+      <a href="/connection_reset/">Connection Reset</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/tshark/" class="dd-item
+        ">
+      <div>
+      <a href="/tshark/"><i class='fa fa-linux' ></i> 티샤크를 활용한 네트워크 트래픽 분석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/shellscript/" class="dd-item
+        ">
+      <div>
+      <a href="/shellscript/"><i class='fa fa-linux' ></i> 자주쓰는 쉘 스크립트 모음</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java8_in_action/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/java8_in_action/"><i class='fa fa-coffee' ></i> Java 8 in Action</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/java8_in_action/part1/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part1/">
+            Part1 기초
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-1 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-2 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">
+            Part3-1 효과적인 자바8 프로그래밍
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/"><i class='fa fa-coffee' ></i> 자바 성능 튜닝 이야기</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/">
+            내가 만든 프로그램의 속도를 알고 싶다
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/">
+            왜 자꾸 String을 쓰지 말라는거야
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/">
+            어디에 담아야 하는지
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/">
+            지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/">
+            static 제대로 한번 써 보자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/">
+            클래스 정보, 어떻게 알아낼 수 있나?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/">
+            로그는 반드시 필요한 내용만 찍자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/"><i class='fa fa-envira' ></i> Spring 개발 이슈모음</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/">
+            Spring Issue1
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/">
+            Spring Issue2
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/toby_spring/" class="dd-item parent alwaysopen haschildren
+        ">
+      <div>
+      <a href="/toby_spring/"><i class='fa fa-envira' ></i> 토비 스프링</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" class="dd-item active">
+        <div>
+          <a href="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/">
+            정의, IoC DI개념, Bean 라이프사이클
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/">
+            오브젝트와 의존관계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/">
+            테스트
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/">
+            템플릿
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/">
+            서비스 추상화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/aop/" class="dd-item">
+        <div>
+          <a href="/toby_spring/aop/">
+            AOP
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/">
+            스프링 핵심 기술의 응용
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/">
+            스프링 프로젝트 시작하기
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" class="dd-item">
+        <div>
+          <a href="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/">
+            IoC 컨테이너와 DI
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/effective_java/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/effective_java/"><i class='fa fa-coffee' ></i> Effective Java(3rd edition 작업중)</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/">
+            객체의 생성과 삭제
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            모든 객체의 공통 메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/">
+            클래스와 인터페이스
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/">
+            제네릭
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" class="dd-item">
+        <div>
+          <a href="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/">
+            enum과 어노테이션
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/">
+            람다와 스트림
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/">
+            일반적인 프로그래밍 원칙들
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/">
+            병행성
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/">
+            직렬화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/finalizer-attack/" class="dd-item
+        ">
+      <div>
+      <a href="/finalizer-attack/"><i class='fa fa-coffee' ></i> Finalizer attack</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/gitflow/" class="dd-item
+        ">
+      <div>
+      <a href="/gitflow/">Git Flow</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/junit&#43;mockito_vs_groovy&#43;spock/" class="dd-item
+        ">
+      <div>
+      <a href="/junit&#43;mockito_vs_groovy&#43;spock/">JUnit&#43;Mockito vs Groovy&#43;Spock</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/singleton/" class="dd-item
+        ">
+      <div>
+      <a href="/singleton/">Singleton</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/understanding_the_tomcat_classpath/" class="dd-item
+        ">
+      <div>
+      <a href="/understanding_the_tomcat_classpath/"><i class='fa fa-coffee' ></i> Understanding The Tomcat Classpath</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/apache-and-tomcat/" class="dd-item
+        ">
+      <div>
+      <a href="/apache-and-tomcat/">apache and tomcat</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/identity/" class="dd-item
+        ">
+      <div>
+      <a href="/identity/">identity</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/nginx_gzip_option/" class="dd-item
+        ">
+      <div>
+      <a href="/nginx_gzip_option/">nginx gzip 옵션</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/specification_by_example/" class="dd-item
+        ">
+      <div>
+      <a href="/specification_by_example/">specification by example</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/what__why__how_living_documentation/" class="dd-item
+        ">
+      <div>
+      <a href="/what__why__how_living_documentation/">what why how living_documentation</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/"><i class='fa fa-coffee' ></i> 객체지향과 디자인패턴</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/">객체지향의 사실과 오해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/"><i class='fa fa-coffee' ></i> 네이버를 만든 기술 자바편</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/">대용량 아키텍처와 성능 튜닝</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/">
+            레퍼런스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/">
+            마이크로 서비스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/">
+            REST의 이해와 설계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/">마이바티스를 사용한 자바 퍼시스턴스 개발</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/">소프트웨어 품질관리(NHN은 이렇게한다)</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">실용주의프로그래머 익스트림프로그래밍</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/">애자일적용후기</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/">웹을 지탱하는 기술</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/"><i class='fa fa-coffee' ></i> 웹프로그래머를 위한 서블릿 컨테이너의 이해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/"><i class='fa fa-coffee' ></i> 자바의 정석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/clean_coders/" class="dd-item
+        ">
+      <div>
+      <a href="/clean_coders/"><i class='fa fa-coffee' ></i> 클린코더스 강의 정리</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/connection_reset/" >
+   Connection Reset</option>
+    <option value="/tshark/" >
+   티샤크를 활용한 네트워크 트래픽 분석</option>
+    <option value="/shellscript/" >
+   자주쓰는 쉘 스크립트 모음</option>
+    <option value="/java8_in_action/" >
+   Java 8 in Action</option> 
+      <option value="/java8_in_action/part1/" >- Part1 기초</option>
+      <option value="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-1 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-2 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >- Part3-1 효과적인 자바8 프로그래밍</option>
+  
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" >
+   자바 성능 튜닝 이야기</option> 
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" >- 내가 만든 프로그램의 속도를 알고 싶다</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" >- 왜 자꾸 String을 쓰지 말라는거야</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" >- 어디에 담아야 하는지</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" >- 지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" >- static 제대로 한번 써 보자</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" >- 클래스 정보, 어떻게 알아낼 수 있나?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" >- 로그는 반드시 필요한 내용만 찍자</option>
+  
+    <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" >
+   Spring 개발 이슈모음</option> 
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" >- Spring Issue1</option>
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" >- Spring Issue2</option>
+  
+    <option value="/toby_spring/" >
+   토비 스프링</option> 
+      <option value="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/"  selected>- 정의, IoC DI개념, Bean 라이프사이클</option>
+      <option value="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" >- 오브젝트와 의존관계</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" >- 테스트</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" >- 템플릿</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" >- 서비스 추상화</option>
+      <option value="/toby_spring/aop/" >- AOP</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" >- 스프링 핵심 기술의 응용</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" >- 스프링 프로젝트 시작하기</option>
+      <option value="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" >- IoC 컨테이너와 DI</option>
+  
+    <option value="/effective_java/" >
+   Effective Java(3rd edition 작업중)</option> 
+      <option value="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" >- 객체의 생성과 삭제</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 모든 객체의 공통 메서드</option>
+      <option value="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" >- 클래스와 인터페이스</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" >- 제네릭</option>
+      <option value="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" >- enum과 어노테이션</option>
+      <option value="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" >- 람다와 스트림</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 메서드</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" >- 일반적인 프로그래밍 원칙들</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" >- 병행성</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" >- 직렬화</option>
+  
+    <option value="/finalizer-attack/" >
+   Finalizer attack</option>
+    <option value="/gitflow/" >
+   Git Flow</option>
+    <option value="/junit&#43;mockito_vs_groovy&#43;spock/" >
+   JUnit&#43;Mockito vs Groovy&#43;Spock</option>
+    <option value="/singleton/" >
+   Singleton</option>
+    <option value="/understanding_the_tomcat_classpath/" >
+   Understanding The Tomcat Classpath</option>
+    <option value="/apache-and-tomcat/" >
+   apache and tomcat</option>
+    <option value="/identity/" >
+   identity</option>
+    <option value="/nginx_gzip_option/" >
+   nginx gzip 옵션</option>
+    <option value="/specification_by_example/" >
+   specification by example</option>
+    <option value="/what__why__how_living_documentation/" >
+   what why how living_documentation</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" >
+   객체지향과 디자인패턴</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" >
+   객체지향의 사실과 오해</option>
+    <option value="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" >
+   네이버를 만든 기술 자바편</option>
+    <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" >
+   대용량 아키텍처와 성능 튜닝</option> 
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" >- 레퍼런스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" >- 마이크로 서비스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" >- REST의 이해와 설계</option>
+  
+    <option value="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" >
+   마이바티스를 사용한 자바 퍼시스턴스 개발</option>
+    <option value="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" >
+   소프트웨어 품질관리(NHN은 이렇게한다)</option>
+    <option value="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >
+   실용주의프로그래머 익스트림프로그래밍</option>
+    <option value="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" >
+   애자일적용후기</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" >
+   웹을 지탱하는 기술</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" >
+   웹프로그래머를 위한 서블릿 컨테이너의 이해</option>
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" >
+   자바의 정석</option>
+    <option value="/clean_coders/" >
+   클린코더스 강의 정리</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>정의, IoC DI개념, Bean 라이프사이클</h1>
+    
+    
+    
+    
+
+<p>자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크</p>
+
+<p><strong>애플리케이션 프레임워크 :</strong> 특정 계층에서 동작하는 한가지 기술분야가 아닌 범용적인 프레임워크</p>
+
+<p><strong>경량급 :</strong> 과거 EJB같은 과도한 엔지니어링이 적용된 기술은 무겁다. 스프링은 복잡한 EJB와 고가의 WAS를 갖추지 않고 단순 서버환경인 톰캣, 제티에서도 잘돌아간다.</p>
+
+<p><strong>자바 엔터프라이즈 개발을 편하게 해준다 :</strong> 스프링이라는 프레임워크가 제공하는 기술이 아니라 자신이 작성하는 애플리케이션 로직에 더 많은 관심과 시간을 쏟게 해준다(초기 기본설정, 적용기술을 잘 선택하고 준비해두면 더이상 크게 신경 쓸 부분이 없다).</p>
+
+<p>자바의 근본적인 목적 : 객체지향 프로그래밍을 통해 유연하고 확장성 좋은 애플리케이션을 빠르게 만드는것.</p>
+
+<p>스프링이 만들어진 이유 : 경량급 프레임워크인 스프링을 활용해서 엔터프라이즈 개발을 편하게 해준다.</p>
+
+<p>엔터프라이즈 시스템 : 서버에서 동작하며 기업과 조직의 업무를 처리해주는 시스템이다. 그래서 많은 사용자의 요청을 동시에 처리해야한다(보안성, 안정성, 확장성 고려).</p>
+
+<p><strong>스프링은 비침투적인 기술을 적용(IoC, DI, AOP 등)함으로써 비지니스 로직의 복잡함과 엔터프라이즈 기술의 복잡함을 분리시켜 애플리케이션 코드에서 설계와 구현 방식을 제한하지 않는다.</strong></p>
+
+<p>기술적 복잡함을 상대하는 전략은 1. 서비스 추상화 2. AOP</p>
+
+<p>스프링의 DI/AOP는 단지 객체지향언어의 장점을 제대로 살리지 못하게 방해했던 요소를 제거하도록 도와줄뿐이다.</p>
+
+<h2 id="ioc-inversion-of-control-제어의-역전">IoC(Inversion of Control)제어의 역전</h2>
+
+<p>일반적인 자바 프로그램에서는 main() 메서드에서 시작해서 개발자가 미리 정한 순서를 따라 오브젝트가 생성되고 실행된다. 그런데 서블릿을 개발해서 서버에 배포할 수는 있지만, 그 실행을 개발자가 직접 제어할 수 있는 방법은 없다. 서블릿 안에 main() 메서드가 있어서 직접 실행시킬 수 있는 것도 아니다. <strong>대신 서블릿에 대한 제어 권한을 가진 컨테이너가 적절한 시점에 서블릿 클래스의 오브젝트를 만들고 그 안에 메서드를 호출한다.</strong></p>
+
+<p>템플릿 메서드 패턴에서도 제어의 역전 개념이 적용되었다. 추상 UserDao를 상속한 서브 클래스는 getConnection()을 구현한다. 하지만 이 메서드가 언제 어떻게 사용될지 자신은 모른다. 서브 클래스에서 결정되는 것이 아니다. 단지 이런 방식으로 DB 커넥션을 만든다는 기능만 구현해놓으면, 슈퍼 클래스인 UserDao의 템플릿 메서드 add(), get() 등에서 필요할 때 호출해서 사용하는 것이다. 즉, 제어권을 상위 템플릿 메서드에 넘기고 자신은 필요할 때 호출되어 사용되도록 한다는 개념이다.</p>
+
+<p><strong>라이브러리와 프레임워크의 차이 :</strong> 라이브러리를 사용하는 애플리케이션 코드는 애플리케이션 흐름을 직접 제어한다. 단지 동작하는 중에 필요한 기능이 있을 때 능동적으로 라이브러리를 사용할 뿐이다.</p>
+
+<p>프레임워크는 거꾸로 애플리케이션 코드가 프레임워크에 의해 사용된다. 보통 프레임워크 위에 개발한 클래스를 등록해두고, 프레임워크가 흐름을 주도하는 중에 개발자가 만든 애플리케이션 코드를 사용하도록 만드는 방식이다.<br />
+cf) 라이브러리는 기능을 제공하고 프레임워크는 방법을 제공한다.</p>
+
+<p><strong>빈 :</strong> 스프링이 제어권을 가지고 직접 만들고 관계를 부여하는 오브젝트(제어의 역전이 허용된 오브젝트).</p>
+
+<p><strong>빈팩토리 :</strong> 스프링의 IoC를 담당하는 핵심 컨테이너. 빈을 등록하고 생성하고 조회하고 돌려주고, 그 외에 부가적인 빈을 관리하는 기능을 담당한다.</p>
+
+<p><strong>ApplicationContext :</strong> 빈 팩토리를 상속한, 빈 팩토리를 확장한 IoC 컨테이너.<br />
+기본적인 기능은 빈 팩토리와 동일하고 스프링이 제공하는 각종 부가 서비스를 추가로 제공한다.</p>
+
+<h3 id="스프링-싱글톤">스프링 싱글톤</h3>
+
+<p>스프링은 여러번에 걸쳐 빈을 요청하더라도 매번 동일한 오브젝트를 돌려준다.</p>
+
+<p>ApplicationContext는 싱글톤을 저장하고 관리하는 싱글톤 레지스트리다. 스프링은 별다른 설정을 하지 않으면 기본적으로 내부에서 생성하는 빈 오브젝트를 모두 싱글톤으로 만든다.</p>
+
+<p><strong>서버 애플리케이션과 싱글톤</strong><br />
+싱글톤으로 빈을 만드는 이유는 스프링이 주로 적용되는 대상이 자바 엔터프라이즈 기술을 사용하는 서버 환경이기 때문이다. 대규모 엔터프라이즈 서버 환경은 서버 하나당 초당 수십에서 수백번씩 요청을 받아 처리해야 되기 때문에 요청이 올때마다 각 로직을 담당하는 오브젝트를 새로 만들어서 사용하면 부하가 심해진다.</p>
+
+<p><strong>싱글톤 패턴 :</strong> 어떤 클래스를 애플리케이션 내에서 제한된 인스턴스 개수, 주로 하나만 존재하도록 강제하는 패턴이다. 이렇게 하나만 만들어지는 클래스의 오브젝트는 애플리케이션 내에서 전역적으로 접근이 가능하다. 단일 오브젝트만 존재해야 하고, 이를 애플리케이션의 여러 곳에서 공유하는 경우에 주로 사용한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">UserDao</span><span style="color:#f92672">{</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#00a8c8">static</span> <span style="color:#111">UserDao</span> <span style="color:#111">userDao</span><span style="color:#f92672">;</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#75af00">UserDao</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">//...
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">UserDao</span> <span style="color:#75af00">getInstance</span><span style="color:#f92672">(){</span>
+        <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">userDao</span> <span style="color:#f92672">==</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">)</span> <span style="color:#111">userDao</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">UserDao</span><span style="color:#f92672">();</span>
+        <span style="color:#111">retrun</span> <span style="color:#111">userDao</span><span style="color:#f92672">;</span> 
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><strong>싱글톤 방식의 문제점 :</strong><br />
+1.private 생성자로 인해 상속을 못한다(객체지향 특징이 적용안됌).<br />
+2.테스트 하기 힘들다 - 테스트에서 사용될 때 목 오브젝트 등으로 대체하기 힘들다.<br />
+3.서버 환경에서는 싱글톤이 하나만 만들어 지는 것을 보장하지 못한다.</p>
+
+<ol>
+<li>서버에서 클래스 로더를 어떻게 구성하고 있는가에 따라 싱글톤 클래스임에도 하나 이상의 오브젝트가 만들어질 수 있다.</li>
+<li>여러 개의 JVM에 분산돼 설치가 되는 경우에도, 각각 독립적으로 오브젝트가 생기기 때문에 싱글톤으로서의 가치가 떨어진다.</li>
+</ol>
+
+<p>4.싱글톤의 사용은 전역 상태를 만들 수 있기 때문에 바람직하지 못하다.</p>
+
+<ol>
+<li>아무 객체나 자유롭게 접근, 수정, 공유할 수 있는 전역상태는 객체지향 프로그래밍에서 권장되지 않는 모델이다.</li>
+</ol>
+
+<p><strong>스프링은 직접 싱글톤 형태의 오브젝트를 만들고 관리하는 기능을 제공한다. 싱글톤 레지스트리 (자바의 기본적인 싱글톤 패턴 구현방식에 여러가지 단점이 있기 때문에)</strong></p>
+
+<p>스프링 컨테이너는 싱글톤을 생성하고 관리하고 공급하는 싱글톤 관리 컨테이너이기도 하다. 싱글톤 레지스트리의 장점은 static 메서드와 private 생성자를 사용해야 하는 비정상적인 클래스가 아니라 평범한 자바클래스를 싱글톤으로 활용하게 해준다.</p>
+
+<p>평범한 자바 클래스도 IoC방식의 컨테이너를 사용해서 생성, 관계 설정 등에 대한 제어권을 컨테이너에게 넘기면 쉽게 싱글톤 방식으로 만들어져 관리될 수 있다.</p>
+
+<p>싱글톤은 멀티스레드 환경이라면 여러 스레드가 동시에 접근해서 사용할 수 있다. 따라서 상태관리에 주의를 기울여야 한다.<br />
+=&gt; 상태정보를 내부에 갖고 있지 않는 무상태(stateless)방식으로 만들어져야 한다.<br />
+cf) 읽기 전용이라면 인스턴스 변수로 생성해도 상관없다. 값이 바뀌는 정보를 담은 변수가 문제를 일으킨다.</p>
+
+<p>스프링 빈의 기본 스코프는 싱글톤이다. 그러나 싱글톤 외의 스코프를 가질 수도 있는데 웹을 통한 새로운 http요청이 생길때마다 생성되는 request 스코프 세션 스코프 등 &hellip;</p>
+
+<p><strong>DI</strong><br>
+스프링 IoC 기능의 대표적인 동작원리는 주로 의존관계 주입이라고 불린다.</p>
+
+<p><img src="/dependency.PNG" alt="" /></p>
+
+<p>A는 B에 의존한다.(B가 변하면 A에 영향을 끼친다)</p>
+
+<p>모델이나 코드에서 클래스와 인터페이스를 통해 드러나는 의존관계 말고, 런타임 시에 오브젝트 사이에서 만들어지는 의존관계도 있다(런타임 의존관계, 오브젝트 의존관계). 설계 시점의 의존관계가 실체화 된것이다.</p>
+
+<p>의존관계 주입은 구체적인 의존 오브젝트와 그것을 사용할 주체, 보통 클라이언트라고 부르는 오브젝트를 <strong>런타임 시에</strong> 연결해주는 작업이다.</p>
+
+<p>DI란 다음 3가지 조건을 충족해야 한다.<br />
+1. 클래스 모델이나 코드에는 런타임 시점의 의존관계가 드러나지 않는다. 그러기 위해서는 인터페이스에만 의존하고 있어야 한다.<br />
+2. 런타임 시점의 의존관계는 컨테이너나 팩토리 (ApplicationContext)같은 제 3의 존재가 결정한다.<br />
+3. 의존관계는 사용할 오브젝트에 대한 레퍼런스를 외부에서 제공해줌으로써 만들어진다.</p>
+
+<p><img src="/di2.PNG" alt="" /></p>
+
+<p>UserDao와 ConnectionMaker 사이에 DI가 적용되려면 UserDao도 반드시 컨테이너가 만드는 빈 오브젝트여야한다.</p>
+
+<p><strong>DI를 원하는 오브젝트는 먼저 자기 자신이 컨테이너가 관리하는 빈이 되야 한다는 사실을 잊지 말자.</strong></p>
+
+<h2 id="빈-라이프사이클과-빈-범위-scope">빈 라이프사이클과 빈 범위(scope)</h2>
+
+<p>스프링 컨테이너는 빈 객체를 생성하고, 프로퍼티를 할당하고, 초기화를 수행하고, 사용이 끝나면 소멸시키는 일련의 과정을 관리한다. 예를 들어, 데이터베이스에 대한 커넥션풀을 제공하는 빈은 사용되기 전에 일정 개수의 커넥션을 연결해야 하고, 애플리케이션 종료 시점에는 열려 있는 커넥션을 모두 닫아야 하는데, 스프링 컨테이너는 이런 커넥션 생성과 종료 시점을 제어하게 된다.</p>
+
+<p>스프링은 InitializingBean 인터페이스를 제공하고 있으며, 빈 객체의 클래스가 InitializingBean 인터페이스를 구현하고 있으면 InitializingBean 인터페이스에 정의된 메서드를 호출해서 빈 객체가 초기화를 진행할 수 있도록 한다. 또한, 스프링 설정에서 초기화 메서드를 지정하면, 스프링은 그 메서드를 호출해서 빈이 초기화를 수행할 수 있게 한다.</p>
+
+<p><strong>빈 라이프사이클 개요</strong><br />
+<img src="/beanlifecycle.PNG" alt="" /></p>
+
+<p><strong>InitializingBean 인터페이스와 DisposableBean 인터페이스</strong><br />
+스프링은 객체의 초기화 및 소멸 과정을 위해 다음의 두 인터페이스를 제공하고 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">InitializingBean</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">void</span> <span style="color:#75af00">afterPropertiesSet</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">Exception</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">DisposableBean</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">void</span> <span style="color:#75af00">destroy</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">Exception</span><span style="color:#f92672">;</span> 
+<span style="color:#f92672">}</span></code></pre></div>
+<p>스프링 컨테이너는 생성한 빈 객체가 InitializingBean 인터페이스를 구현하고 있으면, InitializingBean 인터페이스로 정의되어 있는 afterPropertiesSet() 메서드를 호출한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">ConnPool</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">InitializingBean</span><span style="color:#f92672">,</span> <span style="color:#111">DisposableBean</span><span style="color:#f92672">{</span>
+<span style="color:#f92672">...</span>
+<span style="color:#75af00">@Override</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">afterPropertiesSet</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">Exception</span><span style="color:#f92672">{</span>
+    <span style="color:#75715e">//커넥션 풀 초기화 실행: DB 커넥션을 여는 코드 
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+
+<span style="color:#75af00">@Override</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">destory</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">Excption</span><span style="color:#f92672">{</span>
+    <span style="color:#75715e">//커넥션 풀 종료 실행: 연 DB 커넥션을 닫은 코드 
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>위 클래스를 스프링 빈으로 등록하면 스프링 컨테이너는 빈 생성 후 afterPropertiesSet() 메서드를 호출해서 초기화를 진행하고 destroy() 메서드를 호출해서 소멸을 진행한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">id=</span><span style="color:#d88200">&#34;connPool&#34;</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;jorg.springframwork.connPool&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div>
+<p>이 두 인터페이스를 모두 상속해야 하는 것은 아니며, 필요한 인터페이스만 상속 받으면 된다.</p>
+
+<p>그런데 위와 같이 스프링에 종속된 인터페이스를 구현하면 빈이 스프링에 종속되므로 스프링 IoC컨테이너 외부에서 재사용하지 못한다.</p>
+
+<p><strong>@PostConstruct와 @PreDestroy</strong><br />
+각각 초기화를 실행하는 메서드와 소멸을 실행하는 메서드에 애노테이션을 적용한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> <span style="color:#111">javax.annotation.PostConstruct</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> <span style="color:#111">javax.annotation.PreDestroy</span><span style="color:#f92672">;</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">ConnPool2</span><span style="color:#f92672">{</span>
+
+    <span style="color:#75af00">@PostConstruct</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">initPool</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">//커넥션 풀 초기화 실행:DB 커넥션을 여는 코드
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+
+    <span style="color:#75af00">@PreDestroy</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">destroyPool</span><span style="color:#f92672">(){</span>
+        <span style="color:#75715e">//커넥션 풀 종료 실행 : 연 DB 커넥션을 닫는 코드 
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>두 애노테이션이 적용된 메서드를 초기화/소멸 과정에서 실행하려면 다음과 같이 <code>CommonAnnotationBeanPostProcessor</code> 전처리기를 스프링 빈으로 등록해줘야 한다.<br />
+(context:annotation-config 태크를 사용하면 CommonAnnotationBeanPostProcessor가 빈으로 등록됨)</p>
+
+<p>초기화와 소멸 과정에서 사용될 메서드는 파라미터를 가져서는 안된다.</p>
+
+<p><strong>커스텀 init 메서드와 커스텀 destroy 메서드</strong><br />
+만약 외부에서 제공받는 라이브러리가 있는데, 이 라이브러리의 클래스를 스프링 빈으로 사용해야 할 수도 있다. 이 라이브러리의 클래스는 초기화를 위해 init() 메서드를 제공하고 있는데, 이 init()메서드는 @PostConstruct 애노테이션을 갖고 있지 않고 스프링의 InitializingBean 인터페이스를 상속받지도 않았다. 이때 커스텀 방식을 사용한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">id=</span><span style="color:#d88200">&#34;pool3&#34;</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;net.madvirus.spring4.chap03.ConnPool3&#34;</span>
+    <span style="color:#75af00">init-method=</span><span style="color:#d88200">&#34;init&#34;</span> <span style="color:#75af00">destroy-method=</span><span style="color:#d88200">&#34;destroy&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div>
+<p>자바 기반 설정을 사용한다면</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75af00">@Bean</span><span style="color:#f92672">(</span><span style="color:#111">initMethod</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;init&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">destroyMethod</span> <span style="color:#f92672">=</span> <span style="color:#d88200">&#34;destroy&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#111">ConnPool3</span> <span style="color:#75af00">connPool3</span><span style="color:#f92672">(){</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ConnPool3</span><span style="color:#f92672">();</span> 
+<span style="color:#f92672">}</span></code></pre></div>
+<p>초기화와 소멸 과정에서 사용될 메서드는 파라미터를 가져서는 안된다.</p>
+
+<p><strong>ApplicationContextAware 인터페이스와 BeanNameAware 인터페이스</strong><br />
+빈으로 사용될 객체에서 스프링 컨테이너에 접근해야 한다거나, 빈 객체에서 로그를 기록할 때 빈의 이름을 남기고 싶다면 어떻게 해야할까? 이런 경우에 다음의 두 인터페이스를 사용하면 된다.</p>
+
+<p><code>o.s.context.ApplicationContextAware</code><br />
+이 인터페이스를 상속받은 빈 객체는 초기화 과정에서 컨테이너(ApplicationContext)를 전달받는다.<br />
+<code>o.s.beans.factory.BeanNameAware</code><br />
+이 인터페이스를 상속받은 빈 객체는 초기화 과정에서 빈 이름을 전달받는다.</p>
+
+<p>먼저 ApplicationContextAware 인터페이스는 다음과 같이 정의되어 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">ApplicationContextAware</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Aware</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">void</span> <span style="color:#75af00">setApplicationContext</span><span style="color:#f92672">(</span><span style="color:#111">ApplicationContext</span> <span style="color:#111">applicationContext</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">throws</span> <span style="color:#111">BeansException</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>ApplicationContextAware 인터페이스를 상속받아 구현한 클래스는 setApplicationContext() 메서드를 통해서 컨테이너 객체(ApplicationContext)를 전달받는다. 따라서, 전달받은 컨테이너를 필드에 보관한 후, 이를 이용해서 다른 빈 객체를 구하거나, 컨테이너가 제공하는 기능(이벤트 발생, 메시지 구하기)을 사용할 수 있다. 아래 코드는 ApplicationContextAware 인터페이스의 구현 예시이다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">WorkScheduler</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">ApplicationContextAware</span><span style="color:#f92672">{</span>
+
+    <span style="color:#00a8c8">private</span> <span style="color:#111">WorkRunner</span> <span style="color:#111">workRunner</span><span style="color:#f92672">;</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">ApplicationContext</span> <span style="color:#111">ctx</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setApplicationContext</span><span style="color:#f92672">(</span><span style="color:#111">ApplicationContext</span> <span style="color:#111">applicationContext</span><span style="color:#f92672">)</span>
+    <span style="color:#00a8c8">throws</span> <span style="color:#111">BeansException</span><span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">ctx</span> <span style="color:#f92672">=</span> <span style="color:#111">applicationContext</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">makeAndRunWork</span><span style="color:#f92672">(){</span>
+        <span style="color:#00a8c8">for</span><span style="color:#f92672">(</span><span style="color:#00a8c8">long</span> <span style="color:#111">order</span> <span style="color:#f92672">=</span> <span style="color:#111">1</span><span style="color:#f92672">;</span> <span style="color:#111">order</span><span style="color:#f92672">&lt;=</span><span style="color:#111">10</span><span style="color:#f92672">;</span> <span style="color:#111">order</span><span style="color:#f92672">++){</span>
+            <span style="color:#111">Work</span> <span style="color:#111">work</span> <span style="color:#f92672">=</span> <span style="color:#111">ctx</span><span style="color:#f92672">.</span><span style="color:#75af00">getBean</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;workProto&#34;</span><span style="color:#f92672">,</span><span style="color:#111">Work</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">);</span>
+            <span style="color:#111">work</span><span style="color:#f92672">.</span><span style="color:#75af00">setOrder</span><span style="color:#f92672">(</span><span style="color:#111">order</span><span style="color:#f92672">);</span>
+            <span style="color:#111">workRunner</span><span style="color:#f92672">.</span><span style="color:#75af00">execute</span><span style="color:#f92672">(</span><span style="color:#111">work</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>BeanNameAware 인터페이스는 다음과 같이 정의되어 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">BeanNameAware</span> <span style="color:#00a8c8">extends</span> <span style="color:#111">Aware</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">void</span> <span style="color:#75af00">setBeanName</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>BeanNameAware 인터페이스를 상속받아 구현한 클래스는 setBeanName() 메서드를 이용해서 빈의 이름을 전달받는다. 따라서, 로그 메시지에 빈의 이름을 함께 기록해야 할 때처럼 빈의 이름이 필요한 경우에 BeanNameAware 인터페이스를 사용하면 된다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">WorkRunner</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">BeanNameAware</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">private</span> <span style="color:#111">String</span> <span style="color:#111">beanId</span><span style="color:#f92672">;</span>
+
+    <span style="color:#75af00">@Override</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">setBeanName</span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">name</span><span style="color:#f92672">){</span>
+        <span style="color:#00a8c8">this</span><span style="color:#f92672">.</span><span style="color:#75af00">beanId</span> <span style="color:#f92672">=</span> <span style="color:#111">name</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">execute</span><span style="color:#f92672">(</span><span style="color:#111">Work</span> <span style="color:#111">work</span><span style="color:#f92672">){</span>
+        <span style="color:#111">logger</span><span style="color:#f92672">.</span><span style="color:#75af00">debug</span><span style="color:#f92672">(</span><span style="color:#111">String</span><span style="color:#f92672">.</span><span style="color:#75af00">format</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;WorkRunner[%s] execute Work[%d]&#34;</span><span style="color:#f92672">,</span><span style="color:#111">beanId</span><span style="color:#f92672">,</span><span style="color:#111">work</span><span style="color:#f92672">.</span><span style="color:#75af00">getOrder</span><span style="color:#f92672">()));</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p><strong>빈 객체 범위(scope)</strong><br />
+스프링의 빈은 범위를 갖는데 주요 범위에는 싱글톤과 프로토타입이 있다. (두개의 범위 외에 요청범위, 세션범위가 존재하지만 잘 사용되지 않는다).</p>
+
+<p>1.싱글톤 범위</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">id=</span><span style="color:#d88200">&#34;pool1&#34;</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;net.madvirus.chap03.ConnPool1&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div>
+<p>별다른 설정을 하지 않으면 빈은 싱글톤 범위를 갖는다. 명시적으로 표기하고 싶다면</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">-- XML
+<span style="color:#f92672">&lt;bean</span> <span style="color:#75af00">id=</span><span style="color:#d88200">&#34;pool1&#34;</span> <span style="color:#75af00">class=</span><span style="color:#d88200">&#34;net.madvirus.chap03.ConnPool1&#34;</span> <span style="color:#75af00">scope=</span><span style="color:#d88200">&#34;singleton&#34;</span><span style="color:#f92672">/&gt;</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">--</span><span style="color:#111">Java</span>
+<span style="color:#75af00">@Bean</span>
+<span style="color:#75af00">@Scope</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;singleton&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#00a8c8">public</span> <span style="color:#111">ConnPool1</span> <span style="color:#75af00">pool1</span><span style="color:#f92672">(){</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ConnPool1</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">ConnPool1</span> <span style="color:#111">p1</span> <span style="color:#f92672">=</span> <span style="color:#111">ctx</span><span style="color:#f92672">.</span><span style="color:#75af00">getBean</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;pool1&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">ConnPool1</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">);</span>
+<span style="color:#111">ConnPool1</span> <span style="color:#111">p2</span> <span style="color:#f92672">=</span> <span style="color:#111">ctx</span><span style="color:#f92672">.</span><span style="color:#75af00">getBean</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;pool1&#34;</span><span style="color:#f92672">,</span> <span style="color:#111">ConnPool1</span><span style="color:#f92672">.</span><span style="color:#75af00">class</span><span style="color:#f92672">);</span></code></pre></div>
+<p>getBean()메서드는 매번 동일한 객체를 리턴하기 때문에 p1과 p2는 동일한 객체를 참조하게 된다.</p>
+
+<p>2.프로토타입 범위<br />
+프로토타입 범위의 빈은 객체의 원형(즉, 프로토타입)으로 사용되는 빈으로서, 프로토타입 범위 빈을 getBean()등을 이용해서 구할 경우 스프링 컨테이너는 매번 새로운 객체를 생성한다. 프로토타입 범위로 설정하기 위해서는 다음과 같이 <code>&lt;bean&gt;</code>태그의 scope 속성을 &ldquo;prototype&rdquo;으로 지정하면 된다.</p>
+
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/toby_spring/" title="토비 스프링"> <i class="fa fa-chevron-left"></i><label>토비 스프링</label></a>
+    <a class="nav nav-next" href="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" title="오브젝트와 의존관계" style="margin-right: 0px;"><label>오브젝트와 의존관계</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+    
+
+    
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>

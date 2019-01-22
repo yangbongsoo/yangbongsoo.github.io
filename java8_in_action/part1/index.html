@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>양봉수 블로그</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2019-01-22T18:50:12 KST">
+<title>Part1 기초 :: 양봉수 블로그</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/theme-flex/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<script type="text/javascript">
+      var baseurl = "\/";
+</script>
+<meta name="description" content="">
+
+
+
+    
+  </head>
+  <body data-url="/java8_in_action/part1/">
+    
+      <header>
+  <div class="logo">
+    
+	
+  
+    <a class="baselink" href="/">양봉수 블로그</a>
+  
+
+
+  </div>
+  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/yangbongsoo"  rel="noopener">
+                  <i class='fa fa-github'></i> <label>Github repo</label>
+                </a>
+            </li>
+    </nav>
+</header>
+<article>
+  <aside>
+    <ul class="menu">
+          <li data-nav-id="/" class="dd-item">
+          <a href="/">
+            <i class="fa fa-fw fa-home"></i>
+          </a>
+          </li>
+    <li data-nav-id="/connection_reset/" class="dd-item
+        ">
+      <div>
+      <a href="/connection_reset/">Connection Reset</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/tshark/" class="dd-item
+        ">
+      <div>
+      <a href="/tshark/"><i class='fa fa-linux' ></i> 티샤크를 활용한 네트워크 트래픽 분석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/shellscript/" class="dd-item
+        ">
+      <div>
+      <a href="/shellscript/"><i class='fa fa-linux' ></i> 자주쓰는 쉘 스크립트 모음</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/java8_in_action/" class="dd-item parent alwaysopen haschildren
+        ">
+      <div>
+      <a href="/java8_in_action/"><i class='fa fa-coffee' ></i> Java 8 in Action</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/java8_in_action/part1/" class="dd-item active">
+        <div>
+          <a href="/java8_in_action/part1/">
+            Part1 기초
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-1 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/">
+            Part2-2 함수형 데이터 처리
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">
+            Part3-1 효과적인 자바8 프로그래밍
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/"><i class='fa fa-coffee' ></i> 자바 성능 튜닝 이야기</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/">
+            내가 만든 프로그램의 속도를 알고 싶다
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/">
+            왜 자꾸 String을 쓰지 말라는거야
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/">
+            어디에 담아야 하는지
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/">
+            지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/">
+            static 제대로 한번 써 보자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/">
+            클래스 정보, 어떻게 알아낼 수 있나?
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" class="dd-item">
+        <div>
+          <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/">
+            로그는 반드시 필요한 내용만 찍자
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/"><i class='fa fa-envira' ></i> Spring 개발 이슈모음</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/">
+            Spring Issue1
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" class="dd-item">
+        <div>
+          <a href="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/">
+            Spring Issue2
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/toby_spring/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/toby_spring/"><i class='fa fa-envira' ></i> 토비 스프링</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/">
+            정의, IoC DI개념, Bean 라이프사이클
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/">
+            오브젝트와 의존관계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/">
+            테스트
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/">
+            템플릿
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/">
+            서비스 추상화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/aop/" class="dd-item">
+        <div>
+          <a href="/toby_spring/aop/">
+            AOP
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/">
+            스프링 핵심 기술의 응용
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" class="dd-item">
+        <div>
+          <a href="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/">
+            스프링 프로젝트 시작하기
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" class="dd-item">
+        <div>
+          <a href="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/">
+            IoC 컨테이너와 DI
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/effective_java/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/effective_java/"><i class='fa fa-coffee' ></i> Effective Java(3rd edition 작업중)</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/">
+            객체의 생성과 삭제
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            모든 객체의 공통 메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/">
+            클래스와 인터페이스
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/">
+            제네릭
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" class="dd-item">
+        <div>
+          <a href="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/">
+            enum과 어노테이션
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/">
+            람다와 스트림
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/">
+            메서드
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/">
+            일반적인 프로그래밍 원칙들
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/">
+            예외
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/">
+            병행성
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" class="dd-item">
+        <div>
+          <a href="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/">
+            직렬화
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/finalizer-attack/" class="dd-item
+        ">
+      <div>
+      <a href="/finalizer-attack/"><i class='fa fa-coffee' ></i> Finalizer attack</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/gitflow/" class="dd-item
+        ">
+      <div>
+      <a href="/gitflow/">Git Flow</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/junit&#43;mockito_vs_groovy&#43;spock/" class="dd-item
+        ">
+      <div>
+      <a href="/junit&#43;mockito_vs_groovy&#43;spock/">JUnit&#43;Mockito vs Groovy&#43;Spock</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/singleton/" class="dd-item
+        ">
+      <div>
+      <a href="/singleton/">Singleton</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/understanding_the_tomcat_classpath/" class="dd-item
+        ">
+      <div>
+      <a href="/understanding_the_tomcat_classpath/"><i class='fa fa-coffee' ></i> Understanding The Tomcat Classpath</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/apache-and-tomcat/" class="dd-item
+        ">
+      <div>
+      <a href="/apache-and-tomcat/">apache and tomcat</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/identity/" class="dd-item
+        ">
+      <div>
+      <a href="/identity/">identity</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/nginx_gzip_option/" class="dd-item
+        ">
+      <div>
+      <a href="/nginx_gzip_option/">nginx gzip 옵션</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/specification_by_example/" class="dd-item
+        ">
+      <div>
+      <a href="/specification_by_example/">specification by example</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/what__why__how_living_documentation/" class="dd-item
+        ">
+      <div>
+      <a href="/what__why__how_living_documentation/">what why how living_documentation</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/"><i class='fa fa-coffee' ></i> 객체지향과 디자인패턴</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/">객체지향의 사실과 오해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/"><i class='fa fa-coffee' ></i> 네이버를 만든 기술 자바편</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" class="dd-item alwaysopen haschildren
+        ">
+      <div>
+      <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/">대용량 아키텍처와 성능 튜닝</a>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/">
+            레퍼런스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/">
+            마이크로 서비스 아키텍처
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" class="dd-item">
+        <div>
+          <a href="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/">
+            REST의 이해와 설계
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/">마이바티스를 사용한 자바 퍼시스턴스 개발</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/">소프트웨어 품질관리(NHN은 이렇게한다)</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/">실용주의프로그래머 익스트림프로그래밍</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/">애자일적용후기</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/">웹을 지탱하는 기술</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/"><i class='fa fa-coffee' ></i> 웹프로그래머를 위한 서블릿 컨테이너의 이해</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" class="dd-item
+        ">
+      <div>
+      <a href="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/"><i class='fa fa-coffee' ></i> 자바의 정석</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+    <li data-nav-id="/clean_coders/" class="dd-item
+        ">
+      <div>
+      <a href="/clean_coders/"><i class='fa fa-coffee' ></i> 클린코더스 강의 정리</a><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+    </li>
+
+
+
+
+    </ul>
+    <section>
+    </section>
+  </aside>
+  <section class="page">
+    
+    <div class="nav-select">
+      <center>Navigation : 
+        <select onchange="javascript:location.href = this.value;">
+          
+    <option value="/connection_reset/" >
+   Connection Reset</option>
+    <option value="/tshark/" >
+   티샤크를 활용한 네트워크 트래픽 분석</option>
+    <option value="/shellscript/" >
+   자주쓰는 쉘 스크립트 모음</option>
+    <option value="/java8_in_action/" >
+   Java 8 in Action</option> 
+      <option value="/java8_in_action/part1/"  selected>- Part1 기초</option>
+      <option value="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-1 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part2-2_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" >- Part2-2 함수형 데이터 처리</option>
+      <option value="/java8_in_action/part3-1_%E1%84%92%E1%85%AD%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A18_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >- Part3-1 효과적인 자바8 프로그래밍</option>
+  
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/" >
+   자바 성능 튜닝 이야기</option> 
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%82%E1%85%A2%E1%84%80%E1%85%A1_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%86%B7%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A9%E1%86%A8%E1%84%83%E1%85%A9%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%80%E1%85%A9_%E1%84%89%E1%85%B5%E1%87%81%E1%84%83%E1%85%A1/" >- 내가 만든 프로그램의 속도를 알고 싶다</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%AB_%E1%84%8C%E1%85%A1%E1%84%81%E1%85%AE_string%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8A%E1%85%B3%E1%84%8C%E1%85%B5_%E1%84%86%E1%85%A1%E1%86%AF%E1%84%85%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%80%E1%85%A5%E1%84%8B%E1%85%A3/" >- 왜 자꾸 String을 쓰지 말라는거야</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8B%E1%85%A5%E1%84%83%E1%85%B5%E1%84%8B%E1%85%A6_%E1%84%83%E1%85%A1%E1%86%B7%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%A3_%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB%E1%84%8C%E1%85%B5/" >- 어디에 담아야 하는지</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8C%E1%85%B5%E1%84%80%E1%85%B3%E1%86%B7%E1%84%81%E1%85%A1%E1%84%8C%E1%85%B5_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%84%83%E1%85%A5%E1%86%AB_for_%E1%84%85%E1%85%AE%E1%84%91%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%83%E1%85%A5_%E1%84%88%E1%85%A1%E1%84%85%E1%85%B3%E1%84%80%E1%85%A6_%E1%84%92%E1%85%A1%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%83%E1%85%A1%E1%84%80%E1%85%A9/" >- 지금까지 사용하던 for루프를 더 빠르게 할 수 있다고?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/static_%E1%84%8C%E1%85%A6%E1%84%83%E1%85%A2%E1%84%85%E1%85%A9_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A5%E1%86%AB_%E1%84%8A%E1%85%A5_%E1%84%87%E1%85%A9%E1%84%8C%E1%85%A1/" >- static 제대로 한번 써 보자</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%87%E1%85%A9_%E1%84%8B%E1%85%A5%E1%84%84%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6_%E1%84%8B%E1%85%A1%E1%86%AF%E1%84%8B%E1%85%A1%E1%84%82%E1%85%A2%E1%86%AF_%E1%84%89%E1%85%AE_%E1%84%8B%E1%85%B5%E1%86%BB%E1%84%82%E1%85%A1/" >- 클래스 정보, 어떻게 알아낼 수 있나?</option>
+      <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%A3%E1%84%80%E1%85%B5/%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%87%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%84%89%E1%85%B5_%E1%84%91%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%82%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%86%E1%85%A1%E1%86%AB_%E1%84%8D%E1%85%B5%E1%86%A8%E1%84%8C%E1%85%A1/" >- 로그는 반드시 필요한 내용만 찍자</option>
+  
+    <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/" >
+   Spring 개발 이슈모음</option> 
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B21/" >- Spring Issue1</option>
+      <option value="/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2%E1%84%86%E1%85%A9%E1%84%8B%E1%85%B3%E1%86%B7/spring_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF_%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B22/" >- Spring Issue2</option>
+  
+    <option value="/toby_spring/" >
+   토비 스프링</option> 
+      <option value="/toby_spring/%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%8B%E1%85%B4_ioc_di%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7_bean_%E1%84%85%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%91%E1%85%B3%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3%E1%86%AF/" >- 정의, IoC DI개념, Bean 라이프사이클</option>
+      <option value="/toby_spring/%E1%84%8B%E1%85%A9%E1%84%87%E1%85%B3%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B4%E1%84%8C%E1%85%A9%E1%86%AB%E1%84%80%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A8/" >- 오브젝트와 의존관계</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3/" >- 테스트</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A6%E1%86%B7%E1%84%91%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA/" >- 템플릿</option>
+      <option value="/toby_spring/%E1%84%90%E1%85%A9%E1%84%87%E1%85%B5%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%8E%E1%85%AE%E1%84%89%E1%85%A1%E1%86%BC%E1%84%92%E1%85%AA/" >- 서비스 추상화</option>
+      <option value="/toby_spring/aop/" >- AOP</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%92%E1%85%A2%E1%86%A8%E1%84%89%E1%85%B5%E1%86%B7_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B3%E1%86%BC%E1%84%8B%E1%85%AD%E1%86%BC/" >- 스프링 핵심 기술의 응용</option>
+      <option value="/toby_spring/%E1%84%89%E1%85%B3%E1%84%91%E1%85%B3%E1%84%85%E1%85%B5%E1%86%BC_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8C%E1%85%A6%E1%86%A8%E1%84%90%E1%85%B3_%E1%84%89%E1%85%B5%E1%84%8C%E1%85%A1%E1%86%A8%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/" >- 스프링 프로젝트 시작하기</option>
+      <option value="/toby_spring/ioc_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%AA_di/" >- IoC 컨테이너와 DI</option>
+  
+    <option value="/effective_java/" >
+   Effective Java(3rd edition 작업중)</option> 
+      <option value="/effective_java/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%89%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A6/" >- 객체의 생성과 삭제</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A9%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8B%E1%85%B4_%E1%84%80%E1%85%A9%E1%86%BC%E1%84%90%E1%85%A9%E1%86%BC_%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 모든 객체의 공통 메서드</option>
+      <option value="/effective_java/%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%84%89%E1%85%B3%E1%84%8B%E1%85%AA_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%90%E1%85%A5%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3/" >- 클래스와 인터페이스</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A6%E1%84%85%E1%85%B5%E1%86%A8/" >- 제네릭</option>
+      <option value="/effective_java/enum%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A5%E1%84%82%E1%85%A9%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A7%E1%86%AB/" >- enum과 어노테이션</option>
+      <option value="/effective_java/%E1%84%85%E1%85%A1%E1%86%B7%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7/" >- 람다와 스트림</option>
+      <option value="/effective_java/%E1%84%86%E1%85%A6%E1%84%89%E1%85%A5%E1%84%83%E1%85%B3/" >- 메서드</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%87%E1%85%A1%E1%86%AB%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC_%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8%E1%84%83%E1%85%B3%E1%86%AF/" >- 일반적인 프로그래밍 원칙들</option>
+      <option value="/effective_java/%E1%84%8B%E1%85%A8%E1%84%8B%E1%85%AC/" >- 예외</option>
+      <option value="/effective_java/%E1%84%87%E1%85%A7%E1%86%BC%E1%84%92%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC/" >- 병행성</option>
+      <option value="/effective_java/%E1%84%8C%E1%85%B5%E1%86%A8%E1%84%85%E1%85%A7%E1%86%AF%E1%84%92%E1%85%AA/" >- 직렬화</option>
+  
+    <option value="/finalizer-attack/" >
+   Finalizer attack</option>
+    <option value="/gitflow/" >
+   Git Flow</option>
+    <option value="/junit&#43;mockito_vs_groovy&#43;spock/" >
+   JUnit&#43;Mockito vs Groovy&#43;Spock</option>
+    <option value="/singleton/" >
+   Singleton</option>
+    <option value="/understanding_the_tomcat_classpath/" >
+   Understanding The Tomcat Classpath</option>
+    <option value="/apache-and-tomcat/" >
+   apache and tomcat</option>
+    <option value="/identity/" >
+   identity</option>
+    <option value="/nginx_gzip_option/" >
+   nginx gzip 옵션</option>
+    <option value="/specification_by_example/" >
+   specification by example</option>
+    <option value="/what__why__how_living_documentation/" >
+   what why how living_documentation</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%80%E1%85%AA_%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%91%E1%85%A2%E1%84%90%E1%85%A5%E1%86%AB/" >
+   객체지향과 디자인패턴</option>
+    <option value="/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC%E1%84%8B%E1%85%B4_%E1%84%89%E1%85%A1%E1%84%89%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%A2/" >
+   객체지향의 사실과 오해</option>
+    <option value="/%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%91%E1%85%A7%E1%86%AB/" >
+   네이버를 만든 기술 자바편</option>
+    <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/" >
+   대용량 아키텍처와 성능 튜닝</option> 
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/soa/" >- 레퍼런스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/msa/" >- 마이크로 서비스 아키텍처</option>
+      <option value="/%E1%84%83%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC_%E1%84%8B%E1%85%A1%E1%84%8F%E1%85%B5%E1%84%90%E1%85%A6%E1%86%A8%E1%84%8E%E1%85%A5%E1%84%8B%E1%85%AA_%E1%84%89%E1%85%A5%E1%86%BC%E1%84%82%E1%85%B3%E1%86%BC_%E1%84%90%E1%85%B2%E1%84%82%E1%85%B5%E1%86%BC/rest/" >- REST의 이해와 설계</option>
+  
+    <option value="/%E1%84%86%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%A1%E1%84%90%E1%85%B5%E1%84%89%E1%85%B3%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%89%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1_%E1%84%91%E1%85%A5%E1%84%89%E1%85%B5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/" >
+   마이바티스를 사용한 자바 퍼시스턴스 개발</option>
+    <option value="/%E1%84%89%E1%85%A9%E1%84%91%E1%85%B3%E1%84%90%E1%85%B3%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%A5_%E1%84%91%E1%85%AE%E1%86%B7%E1%84%8C%E1%85%B5%E1%86%AF%E1%84%80%E1%85%AA%E1%86%AB%E1%84%85%E1%85%B5_nhn%E1%84%8B%E1%85%B3%E1%86%AB_%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A5%E1%87%82%E1%84%80%E1%85%A6%E1%84%92%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A1/" >
+   소프트웨어 품질관리(NHN은 이렇게한다)</option>
+    <option value="/%E1%84%89%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%8C%E1%85%AE%E1%84%8B%E1%85%B4%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%A8%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%85%E1%85%B5%E1%86%B7%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC/" >
+   실용주의프로그래머 익스트림프로그래밍</option>
+    <option value="/%E1%84%8B%E1%85%A2%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%A8%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%AE%E1%84%80%E1%85%B5/" >
+   애자일적용후기</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF_%E1%84%8C%E1%85%B5%E1%84%90%E1%85%A2%E1%86%BC%E1%84%92%E1%85%A1%E1%84%82%E1%85%B3%E1%86%AB_%E1%84%80%E1%85%B5%E1%84%89%E1%85%AE%E1%86%AF/" >
+   웹을 지탱하는 기술</option>
+    <option value="/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%A5%E1%84%85%E1%85%B3%E1%86%AF_%E1%84%8B%E1%85%B1%E1%84%92%E1%85%A1%E1%86%AB_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%B5%E1%86%BA_%E1%84%8F%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5%E1%84%8B%E1%85%B4_%E1%84%8B%E1%85%B5%E1%84%92%E1%85%A2/" >
+   웹프로그래머를 위한 서블릿 컨테이너의 이해</option>
+    <option value="/%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%E1%84%8B%E1%85%B4_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%89%E1%85%A5%E1%86%A8/" >
+   자바의 정석</option>
+    <option value="/clean_coders/" >
+   클린코더스 강의 정리</option>
+
+
+
+        </select>
+      </center>
+    </div>
+      <div>
+        <div class="searchbox">
+          <input data-search-input id="search-by" type="text" placeholder="">
+        </div>
+        <script type="text/javascript" src="/js/lunr.min.js"></script>
+        <script type="text/javascript" src="/js/auto-complete.js"></script>
+        <link href="/css/auto-complete.css" rel="stylesheet">
+        <script type="text/javascript">
+          
+              var baseurl = "\/";
+          
+        </script>
+        <script type="text/javascript" src="/js/search.js"></script>
+      </div>
+    
+
+    <h1>Part1 기초</h1>
+    
+    
+    
+    
+
+<h2 id="1장-자바8을-눈여겨봐야-하는-이유">1장 - 자바8을 눈여겨봐야 하는 이유</h2>
+
+<p><strong>Stream processing</strong> : stream이란 한번에 한 개씩 만들어지는 연속적인 데이터 항목들의 모임을 말한다.</p>
+
+<p><strong>동작 파라미터화</strong> : 메서드를 다른 메서드의 인수로 넘겨주는 기능을 제공한다.</p>
+
+<p><strong>병렬성과 공유 가변 데이터</strong> : 다른 코드와 동시에 실행하더라도 안전하게 실행할 수 있는 코드를 만드려면 공유된 가변 데이터에 접근하지 말아야 한다. 이런 함수를 pure 함수, stateless 함수라 부른다.</p>
+
+<h3 id="자바-함수">자바 함수</h3>
+
+<p>프로그래밍 언어에서 함수라는 용어는 메서드 특히 정적 메서드와 같은 의미로 사용된다. 자바의 함수는 이에 더해 수학적인 함수처럼 사용되며 부작용을 일으키지 않는 함수를 의미한다.</p>
+
+<p>자바8에서는 함수를 새로운 값의 형식으로 추가했다.(즉, 함수 자체가 값)</p>
+
+<p><strong>메서드 레퍼런스</strong></p>
+
+<p>ex) 디렉토리에서 모든 숨겨진 파일을 필터링하는 문제에서 우선 주어진 파일이 숨겨져 있는지 체크하는 기능</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">File</span><span style="color:#f92672">[]</span> <span style="color:#111">hiddenFiles</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">File</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">).</span><span style="color:#75af00">listFiles</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">FileFilter</span><span style="color:#f92672">(){</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">boolean</span> <span style="color:#75af00">accept</span><span style="color:#f92672">(</span><span style="color:#111">File</span> <span style="color:#111">file</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#111">file</span><span style="color:#f92672">.</span><span style="color:#75af00">isHidden</span><span style="color:#f92672">();</span> <span style="color:#75715e">//숨겨진 파일 필터링. 
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>위의 코드를 보면 자바8 전까지는 File 클래스에 이미 isHidden이라는 메서드가 있는데 FileFilter로 감싼 다음에 FileFilter를 인스턴스화해야 했다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">File</span><span style="color:#f92672">[]</span> <span style="color:#111">hiddenFiles</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">File</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">).</span><span style="color:#75af00">listFiles</span><span style="color:#f92672">(</span><span style="color:#111">File:</span><span style="color:#f92672">:</span><span style="color:#111">isHidden</span><span style="color:#f92672">);</span></code></pre></div>
+<p><strong>자바8의 메서드 레퍼런스 ::</strong> (이 메서드를 값으로 사용하라는 의미)를 이용해서 listFiles에 직접 전달할 수 있다. 기존에 객체 레퍼런스(new로 객체 레퍼런스를 생성함)를 이용해서 객체를 이리저리 주고받았던 것처럼 자바 8에서는 File::isHidden을 이용해서 메서드 레퍼런스를 만들어 전달할 수 있게 되었다.</p>
+
+<p><strong>람다: 익명 함수</strong></p>
+
+<p>함수도 값으로 취급할 수 있다. ex) (int x) -&gt; x+1 : x라는 인수를 호출하면 x+1을 반환하라.</p>
+
+<p><strong>코드 넘겨주기: 예제</strong></p>
+
+<p>Apple이라는 클래스와 getColor라는 메서드가 있고, Apples 리스트를 포함하는 inventory라는 변수가 있다고 가정하자. 이때 모든 녹색 사과를 선택해서 리스트를 반환하는 프로그램을 구현하려 한다. 이처럼 특정 항목을 선택해서 반환하는 동작을 ‘필터&rsquo;라고 한다. 자바8 이전에는 다음처럼 filterGreenApples라는 메서드를 구현했을 것이다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">filterGreenApples</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+	<span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+	<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span> <span style="color:#f92672">:</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">green</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getColor</span><span style="color:#f92672">()){</span>
+			<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#00a8c8">return</span> <span style="color:#111">result</span><span style="color:#f92672">;</span> 
+<span style="color:#f92672">}</span></code></pre></div>
+<p>하지만 누군가는 애플을 무게로 필터링 하고 싶을 수 있다. 그러면 전체 코드를 복붙해서 다음처럼 구현할 수 있을 것이다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">filterGreenApples</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+	<span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+	<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span> <span style="color:#f92672">:</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">150</span><span style="color:#f92672">){</span>
+			<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#00a8c8">return</span> <span style="color:#111">result</span><span style="color:#f92672">;</span> 
+<span style="color:#f92672">}</span></code></pre></div>
+<p>중복의 단점이 드러나는 안좋은 방법이다. 자바8 에서는 코드를 인수로 넘겨줄 수 있어서 filter 메서드를 중복으로 구현할 필요가 없다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">boolean</span> <span style="color:#75af00">isGreenApple</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span><span style="color:#f92672">){</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#d88200">&#34;green&#34;</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getColor</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#00a8c8">boolean</span> <span style="color:#75af00">isHeavyApple</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span><span style="color:#f92672">){</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">150</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">static</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">filterApples</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">inventory</span><span style="color:#f92672">,</span>
+                                <span style="color:#111">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">p</span><span style="color:#f92672">){</span>
+    <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#00a8c8">for</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span> <span style="color:#f92672">:</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+        <span style="color:#00a8c8">if</span><span style="color:#f92672">(</span><span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">)){</span>
+            <span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#00a8c8">return</span> <span style="color:#111">result</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>다음 처럼 메서드를 호출 할 수 있다.</p>
+
+<p><code>filterApples(inventory, Apple::isGreenApple);</code></p>
+
+<p><code>filterApples(inventory, Apple::isHeavyApple);</code></p>
+
+<p>cf) Predicate : 수학에서는 인수로 값을 받아 true / false를 반환하는 함수를 Predicate라고 한다.</p>
+
+<p><strong>메서드 전달에서 람다로</strong></p>
+
+<p>isHeavyApple, isGreenApple처럼 한두 번만 사용할 메서드를 매번 정의하는 것은 귀찮은 일이다. 자바8 에서는 다음처럼 새로운 개념을 이용해서 코드를 구현할 수 있다.
+<code>filterApples(inventory, (Apple a) -&gt; “green”.equals(a.getColor());</code></p>
+
+<p><code>filterApples(inventory, (Apple a) -&gt; a.getWeight() &gt; 150);</code></p>
+
+<p><code>filterApples(inventory, (Apple a) -&gt; a.getWeight() &lt; 80 || “brown”.equals(a.getColor());</code></p>
+
+<p>즉, 한 번만 사용할 메서드는 따로 정의를 구현할 필요가 없다. 하지만 람다가 몇 줄 이상으로 길어진다면(복잡한 동작을 수행하는 상황) 익명 람다보다는 코드가 수행하는 일을 잘 설명하는 이름을 가진 메서드를 정의하고 메서드 레퍼런스를 활용하는 것이 바람직하다. <strong>코드의 명확성이 우선시 되어야 한다.</strong></p>
+
+<h3 id="스트림">스트림</h3>
+
+<p>다음은 리스트에서 고가의 거래(Transcation)만 필터링한 다음에 통화로 결과를 그룹화하는 코드다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Map</span><span style="color:#f92672">&lt;</span><span style="color:#111">Currency</span><span style="color:#f92672">,</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Transaction</span><span style="color:#f92672">&gt;&gt;</span> <span style="color:#111">transactionsByCurrencies</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">HashMap</span><span style="color:#f92672">&lt;&gt;();</span> <span style="color:#75715e">// 그룹화된 트랜잭션을 더할 Map 생성
+</span><span style="color:#75715e"></span>
+<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Transaction</span> <span style="color:#111">transaction</span> <span style="color:#f92672">:</span> <span style="color:#111">transactions</span><span style="color:#f92672">){</span> <span style="color:#75715e">// 트랜잭션의 리스트를 반복
+</span><span style="color:#75715e"></span>	<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">transaction</span><span style="color:#f92672">.</span><span style="color:#75af00">getPrice</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">1000</span><span style="color:#f92672">){</span> <span style="color:#75715e">// 고가의 트랜잭션을 필터링
+</span><span style="color:#75715e"></span>		<span style="color:#111">Currency</span> <span style="color:#111">currency</span> <span style="color:#f92672">=</span> <span style="color:#111">transaction</span><span style="color:#f92672">.</span><span style="color:#75af00">getCurrency</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 트랜잭션의 통화 추출
+</span><span style="color:#75715e"></span>		<span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Transcation</span><span style="color:#f92672">&gt;</span> <span style="color:#111">transactionsForCurrency</span> <span style="color:#f92672">=</span> <span style="color:#111">transactionsByCurrencies</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">(</span><span style="color:#111">currency</span><span style="color:#f92672">);</span> 
+		<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">transactionsForCurrency</span> <span style="color:#f92672">==</span> <span style="color:#00a8c8">null</span><span style="color:#f92672">){</span> <span style="color:#75715e">// 현재 통화의 그룹화된 맵에 항목이 없으면 새로 만든다.
+</span><span style="color:#75715e"></span>			<span style="color:#111">transactionsForCurrency</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+			<span style="color:#111">transactionsByCurrencies</span><span style="color:#f92672">.</span><span style="color:#75af00">put</span><span style="color:#f92672">(</span><span style="color:#111">currency</span><span style="color:#f92672">,</span> <span style="color:#111">transactionsForCurrency</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#111">transactionsForCurrency</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">transaction</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 현재 탐색된 트랜잭션을 같은 통화의 트랜잭션 리스트에 추가한다. 
+</span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>위 예제 코드에는 중첩된 제어 흐름 문장이 많아서 코드를 한 번에 이해하기 어렵다. 스트림 API를 이요하면 다음처럼 문제를 해결할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import static</span> <span style="color:#111">java.util.stream.Collections.toList</span><span style="color:#f92672">;</span>
+
+<span style="color:#111">Map</span><span style="color:#f92672">&lt;</span><span style="color:#111">Currency</span><span style="color:#f92672">,</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Transaction</span><span style="color:#f92672">&gt;&gt;</span> <span style="color:#111">transactionByCurrencies</span> <span style="color:#f92672">=</span> 
+	<span style="color:#111">transactions</span><span style="color:#f92672">.</span><span style="color:#75af00">stream</span><span style="color:#f92672">()</span>
+           		   <span style="color:#f92672">.</span><span style="color:#75af00">filter</span><span style="color:#f92672">((</span><span style="color:#111">Transaction</span> <span style="color:#111">t</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">t</span><span style="color:#f92672">.</span><span style="color:#75af00">getPrice</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">1000</span><span style="color:#f92672">)</span> <span style="color:#75715e">//고가의 트랜잭션 필터링
+</span><span style="color:#75715e"></span>			   <span style="color:#f92672">.</span><span style="color:#75af00">collect</span><span style="color:#f92672">(</span><span style="color:#111">groupingBy</span><span style="color:#f92672">(</span><span style="color:#111">Transaction:</span><span style="color:#f92672">:</span><span style="color:#111">getCurrency</span><span style="color:#f92672">);</span>	</code></pre></div>
+<p>컬렉션에서는 반복 과정을 직접 처리해야 했다. 이런 방식의 반복을 외부 반복이라고 한다. 반면 스트림 API를 이용하면 루프를 신경쓸 필요가 없다. 라이브러리 내부에서 모든 데이터가 처리된다. 이와 같은 반복을 내부 반복이라고 한다.</p>
+
+<p>컬렉션은 어떻게 데이터를 저장하고 접근할지에 중점을 두는 반면 스트림은 데이터에 어떤 계산을 할 것인지 묘사하는 것에 중점을 둔다는 점을 기억하자. 스트림은 스트림 내의 요소를 쉽게 병렬로 처리할 수 있는 환경을 제공한다는 것이 핵심이다.</p>
+
+<p><strong>컬렉션을 필터링할 수 있는 가장 빠른 방법은 컬렉션을 스트림으로 바꾸고, 병렬로 처리한 다음에, 리스트로 다시 복원하는 것이다.</strong></p>
+
+<h3 id="디폴트-메서드">디폴트 메서드</h3>
+
+<p>디폴트 메서드는 특정 프로그램을 구현하는 데 도움을 주는 기능이 아니라 미래에 프로그램이 쉽게 변화할 수 있는 환경을 제공하는 기능이다.</p>
+
+<h2 id="2장-동작-파라미터화-코드-전달하기">2장 - 동작 파라미터화 코드 전달하기</h2>
+
+<p>동작 파라미터화를 이용하면 자주 바뀌는 요구사항에 효과적으로 대응할 수 있다. <strong>동작 파라미터화란 아직은 어떻게 실행할 것인지 결정하지 않은 코드 블록을 의미한다.</strong> 이 코드 블록은 나중에 프로그램에서 호출한다. 즉, 코드 블록의 실행은 나중으로 미뤄진다. 결과적으로 코드 블록에 따라 메서드의 동작이 파라미터화된다.</p>
+
+<p><strong>동작 파라미터화</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">ApplePredicate</span><span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">boolean</span> <span style="color:#75af00">test</span> <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>선택 조건을 결정하는 인터페이스이다. 이와 같은 동작을 프레디케이트(불린을 반환하는 함수)라고 한다.</p>
+
+<p>다음 예제처럼 다양한 선택 조건을 대표하는 여러 버전의 ApplePredicate를 정의할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//무거운 사과만 선택
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AppleHeavyWeightPredicate</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">ApplePredicate</span><span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">boolean</span> <span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">150</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//녹색 사과만 선택
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AppleGreenColorPredicate</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">ApplePredicate</span><span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">boolean</span> <span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">green</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">.</span><span style="color:#75af00">getColor</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">// 템플릿 부분
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">filterApples</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">inventory</span><span style="color:#f92672">,</span> <span style="color:#111">ApplePredicate</span> <span style="color:#111">p</span><span style="color:#f92672">){</span>
+	<span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+	<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">apple</span> <span style="color:#f92672">:</span> <span style="color:#111">inventory</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">)){</span>
+			<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">apple</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#00a8c8">return</span> <span style="color:#111">result</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>하지만 익명 클래스를 사용해도 반복되어 지저분한 코드는 여전히 많고 많은 프로그래머가 익명 클래스의 사용에 익숙하지 않다.</p>
+
+<p><strong>람다 표현식 사용</strong></p>
+
+<p>자바8의 람다 표현식을 이용해서 간단히 재구현할 수 있다.</p>
+
+<p><code>List&lt;Apple&gt; result = filterApples(inventory, (Apple apple) -&gt; “red”.equals(apple.getColor()));</code></p>
+
+<p><img src="/parameterization.jpg" alt="" /></p>
+
+<p><strong>리스트 형식으로 추상화</strong></p>
+
+<p>Apple 이외의 다양한 물건에서 필터링이 작동하도록 리스트 형식을 추상화할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;{</span>
+	<span style="color:#00a8c8">boolean</span> <span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">t</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">static</span> <span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#75af00">filter</span><span style="color:#f92672">(</span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">list</span><span style="color:#f92672">,</span> <span style="color:#111">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">p</span><span style="color:#f92672">){</span>
+	<span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">ArrayList</span><span style="color:#f92672">&lt;&gt;();</span>
+	<span style="color:#00a8c8">for</span> <span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">e</span> <span style="color:#f92672">:</span> <span style="color:#111">list</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">if</span> <span style="color:#f92672">(</span><span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">test</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">)){</span>
+			<span style="color:#111">result</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">);</span> 
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+	<span style="color:#00a8c8">return</span> <span style="color:#111">result</span><span style="color:#f92672">;</span> 
+<span style="color:#f92672">}</span></code></pre></div>
+<p>이제 바나나, 오렌지, 정수, 문자열 등의 리스트에 필터 메서드를 사용할 수 있다.
+<code>List&lt;Apple&gt; redApples = filter(inventory, (Apple apple) -&gt; “red”.equals(apple.getColor());</code></p>
+
+<p><code>List&lt;String&gt; evenNumbers = filter(numbers, (Integer i) -&gt; i % 2 == 0);</code></p>
+
+<p><strong>실전 예제 - Comparator로 정렬하기</strong></p>
+
+<p>자바8의 List에는 sort 메서드가 포함되어 있다.(물론 Collections.sort도 존재) 다음과 같은 인터페이스를 갖는 java.util.Comparator 객체를 이용해서 sort의 동작을 파라미터화 할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//java.uitl.Comparator
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;{</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">o1</span><span style="color:#f92672">,</span> <span style="color:#111">T</span> <span style="color:#111">o2</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Comparator를 구현해서 sort 메서드의 동작을 다양화할 수 있다. 예를 들어 익명 클래스를 이용해서 무게가 적은 순으로 목록에서 사과를 정렬할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;{</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">});</span></code></pre></div>
+<p>람다 표현식을 이용하면 다음처럼 간단하게 코드를 구현할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span>
+	<span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span></code></pre></div>
+<h2 id="3장-람다-표현식">3장 - 람다 표현식</h2>
+
+<h3 id="람다란-무엇인가">람다란 무엇인가</h3>
+
+<p>람다 표현식은 메서드로 전달할 수 있는 익명 함수를 단순화한것이라고 할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">byWeight</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">public</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">};</span></code></pre></div><div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">byWeight</span> <span style="color:#f92672">=</span>
+        <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span></code></pre></div>
+<p>람다는 세 부분으로 이루어진다.</p>
+
+<p><strong>파라미터 리스트</strong> :  Comparator의 compare 메서드의 파라미터(두개의 사과).</p>
+
+<p><strong>화살표</strong> : 화살표(-&gt;)는 람다의 파라미터 리스트와 바디를 구분한다.</p>
+
+<p><strong>람다의 바디</strong> : 두 사과의 무게를 비교한다. 람다의 반환값에 해당하는 표현식이다.</p>
+
+<p><strong>자바8의 유효한 5가지 람다 표현식</strong></p>
+
+<p><code>(String s) -&gt; s.length()</code></p>
+
+<p>첫 번째 람다 표현식은 String 형식의 파라미터 하나를 가지며 int를 반환한다. 람다 표현식에는 return이 함축되어 있으므로 return 문을 명시적으로 사용하지 않아도 된다.</p>
+
+<p><code>(Apple a) -&gt; a.getWeight() &gt; 150</code></p>
+
+<p>두번째 람다 표현식은 Apple 형식의 파라미터를 가지며 boolean을 반환한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">(</span><span style="color:#00a8c8">int</span> <span style="color:#111">x</span><span style="color:#f92672">,</span> <span style="color:#00a8c8">int</span> <span style="color:#111">y</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+	<span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Result:</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">);</span>
+	<span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">x</span><span style="color:#f92672">+</span><span style="color:#111">y</span><span style="color:#f92672">);</span></code></pre></div>
+<p>세 번째 람다 표현식은 int 형식의 파라미터 두 개를 가지며 리턴값이 없다(void 리턴). 이 예제에서 볼 수 있듯이 람다 표현식은 여러 행의 문장을 포함할 수 있다.</p>
+
+<p><code>() -&gt; 42</code></p>
+
+<p>네 번째 람다 표현식은 파라미터가 없으며 int를 반환한다.</p>
+
+<p><code>(Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight());</code></p>
+
+<p>다섯 번째 람다 표현식은 Apple 형식의 파라미터 두 개를 가지며 int를 반환한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//cf) 유효하지 않은 람다 표현식
+</span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#111">Integer</span> <span style="color:#111">i</span> <span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#00a8c8">return</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Alan</span><span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#f92672">+</span> <span style="color:#111">i</span><span style="color:#f92672">;</span> 
+<span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span><span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Iron</span> <span style="color:#111">Man</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">;}</span>
+
+<span style="color:#75715e">//return은 흐름 제어문이다. { } 안에 있어야 한다. 
+</span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#111">Integer</span> <span style="color:#111">i</span> <span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span> <span style="color:#00a8c8">return</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Alan</span><span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#f92672">+</span> <span style="color:#111">i</span> <span style="color:#f92672">};</span> 
+
+<span style="color:#75715e">//“Iron Man”은 구문(statement)이 아니라 표현식(expression)이다. 
+</span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Iron</span> <span style="color:#111">Man</span><span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#111">또는</span> <span style="color:#f92672">(</span><span style="color:#111">String</span> <span style="color:#111">s</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span> <span style="color:#00a8c8">return</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">Iron</span> <span style="color:#111">Man</span><span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#f92672">}</span></code></pre></div>
+<h3 id="어디에-어떻게-람다를-사용할까">어디에, 어떻게 람다를 사용할까?</h3>
+
+<p><strong>함수형 인터페이스</strong>라는 문맥에서 람다 표현식을 사용할 수 있다. 함수형 인터페이스는 정확히 하나의 추상 메서드를 지정하는 인터페이스다. 지금까지 살펴본 자바 API의 함수형 인터페이스로 Comparator, Runnable 등이 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//java.util.Comparator 
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">T</span><span style="color:#f92672">&gt;{</span>
+	<span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">T</span> <span style="color:#111">o1</span><span style="color:#f92672">,</span> <span style="color:#111">T</span> <span style="color:#111">o2</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">//java.lang.Runnable 
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">Runnable</span><span style="color:#f92672">{</span>
+	<span style="color:#00a8c8">void</span> <span style="color:#75af00">run</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>cf) 인터페이스는 디폴트 메서드(인터페이스의 메서드를 구현하지 않은 클래스를 고려해서 기본 구현을 제공하는 바디를 포함하는 메서드)를 포함할 수 있다. 많은 디폴트 메서드가 있더라도 추상 메서드가 오직 하나면 함수형 인터페이스다.</p>
+
+<p>람다 표현식으로 함수형 인터페이스의 추상 메서드 구현을 직접 전달할 수 있으므로 <strong>전체 표현식을 함수형 인터페이스의 인스턴스로 취급</strong>(기술적으로 따지면 함수형 인터페이스를 concrete 구현한 클래스의 인스턴스)할 수 있다.</p>
+
+<p><strong>함수 디스크립터</strong></p>
+
+<p>함수형 인터페이스의 추상메서드 시그너처를 함수 디스크립터라고 부른다. 예를 들어 () -&gt; void 라는 표기는 파라미터 리스트가 없으며 void를 반환하는 함수를 의미한다. 람다 표현식은 함수형 인터페이스의 추상 메서드와 같은 시그니처를 갖는다는 사실을 기억하자.</p>
+
+<p>함수형 인터페이스를 인수를 받는 메서드에만 람다 표현식을 사용할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">execute</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{});</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">void</span> <span style="color:#75af00">execute</span><span style="color:#f92672">(</span><span style="color:#111">Runnable</span> <span style="color:#111">r</span><span style="color:#f92672">){</span>
+	<span style="color:#111">r</span><span style="color:#f92672">.</span><span style="color:#75af00">run</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>cf) <code>@FunctionalInterface</code>은 함수형 인터페이스임을 가리키는 애노테이션이다. 만약 실제로 함수형 인터페이스가 아니면 컴파일러가 에러를 발생시킨다.</p>
+
+<h3 id="람다-활용-실행-어라운드-패턴">람다 활용: 실행 어라운드 패턴</h3>
+
+<p>자원 처리(예를 들면 DB의 파일 처리)에 사용하는 순환 패턴은 자원을 열고, 처리한 다음에, 자원을 닫는 순서로 이루어진다. 설정과 정리 과정은 대부분 비슷하다. <strong>즉, 실제 자원을 처리하는 코드를 설정과 정리 두 과정이 둘러싸는 형태를 갖는데 이 같은 형식의 코드를 실행 어라운드 패턴이라고 부른다.</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">processFile</span><span style="color:#f92672">()</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">try</span><span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">br</span> <span style="color:#f92672">=</span>
+            <span style="color:#00a8c8">new</span> <span style="color:#111">BufferedReader</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">FileReader</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;data.txt&#34;</span><span style="color:#f92672">))){</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">br</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>cf) 자바7에 새로 추가된 try-with-resources 구문을 사용했다. 이를 사용하면 자원을 명시적으로 닫을 필요가 없다.</p>
+
+<p>현재 코드는 파일에서 한 번에 한 줄만 읽을 수 있다. 기존의 설정, 정리 과정은 재사용하고 processFile 메서드만 다른 동작을 다른 동작을 수행하도록 해보자. processFile의 동작을 파라미터화하는 것이다. 즉, processFile 메서드가 BufferedReader를 이용해서 다른 동작을 수행할 수 있도록 processFile 메서드로 동작을 전달해야 한다.</p>
+
+<p><code>String result = processFile((BufferedReader br) -&gt; br.readLine() + br.readLine());</code></p>
+
+<p>함수형 인터페이스 자리에 람다를 사용할 수 있다. 따라서 BufferedReader -&gt; String과 IOException을 던질 수 있는 시그니처와 일치하는 함수형 인터페이스를 만들어야 한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75af00">@FuntionalInterface</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">BufferedReaderProcessor</span><span style="color:#f92672">{</span>
+	<span style="color:#111">String</span> <span style="color:#75af00">process</span><span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">b</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#00a8c8">public</span> <span style="color:#111">String</span> <span style="color:#75af00">processFile</span><span style="color:#f92672">(</span><span style="color:#111">BufferedReaderProcessor</span> <span style="color:#111">p</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">{</span>
+    <span style="color:#00a8c8">try</span><span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">br</span> <span style="color:#f92672">=</span>
+            <span style="color:#00a8c8">new</span> <span style="color:#111">BufferedReader</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">FileReader</span><span style="color:#f92672">(</span><span style="color:#d88200">&#34;data.txt&#34;</span><span style="color:#f92672">))){</span>
+        <span style="color:#00a8c8">return</span> <span style="color:#111">p</span><span style="color:#f92672">.</span><span style="color:#75af00">process</span><span style="color:#f92672">(</span><span style="color:#111">br</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>이제 BufferedReaderProcessor에 정의된 process 메서드의 시그니처와 일치하는 다양한 람다를 전달할 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">String</span> <span style="color:#111">oneLine</span> <span style="color:#f92672">=</span> <span style="color:#111">processFile</span><span style="color:#f92672">((</span><span style="color:#111">BufferedReader</span> <span style="color:#111">br</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">br</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">());</span>
+<span style="color:#111">String</span> <span style="color:#111">twoLines</span> <span style="color:#f92672">=</span> <span style="color:#111">processFile</span><span style="color:#f92672">((</span><span style="color:#111">BufferedReader</span> <span style="color:#111">br</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">br</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#111">br</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">());</span></code></pre></div>
+<p><strong>람다와 함수형 인터페이스 예제</strong></p>
+
+<p>| 사용 사례 | 람다 예제 | 대응하는 함수형 인터페이스 |
+| &ndash; | &ndash; | &ndash; |
+| 불린 표현 | <code>(List&lt;String&gt; list)</code> -&gt; list.isEmpty() | <code>Predicate&lt;List&lt;String&gt;&gt;</code> |
+| 객체 생성 | () -&gt; new Apple(10) | <code>Supplier&lt;Apple&gt;</code> |
+| 객체에서 소비 | (Apple a) -&gt; System.out.println(a.getWeight()) | <code>Consumer&lt;Apple&gt;</code> |
+| 객체에서 선택/추출 | (String s) -&gt; s.length() | <code>Function&lt;String, Integer&gt;</code>또는 <code>ToInteFunction&lt;String&gt;</code> |
+| 두 값 조합 | (int a, int b) -&gt; a * b | IntBinaryOperator |
+| 두 객체 비교 | (Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight()) | <code>BiFunction&lt;Apple,Apple,Integer&gt;</code> 또는 <code>ToIntBiFunction&lt;Apple,Apple&gt;</code> |</p>
+
+<p><strong>예외, 람다, 함수형 인터페이스의 관계</strong></p>
+
+<p>함수형 인터페이스는 확인된 예외를 던지는 동작을 허용하지 않는다. 그래서 예외를 던지를 람다 표현식을 만들려면 확인된 예외를 선언하는 함수형 인터페이스를 직접 정의하거나 람다를 try/catch 블록으로 감싸야 한다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75af00">@FunctionalInterface</span>
+<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">interface</span> <span style="color:#75af00">BufferedReaderProcessor</span><span style="color:#f92672">{</span>
+	<span style="color:#111">String</span> <span style="color:#75af00">process</span><span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">b</span><span style="color:#f92672">)</span> <span style="color:#00a8c8">throws</span> <span style="color:#111">IOException</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+<span style="color:#111">BufferedReaderProcessor</span> <span style="color:#111">p</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">br</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">br</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">();</span></code></pre></div>
+<p>위의 예제는 IOException을 명시적으로 선언하는 함수형 인터페이스 BufferedReaderProcessor 이다. 그러나 우리는 <code>Function&lt;T, R&gt;</code> 형식의 함수형 인터페이스를 기대하는 API를 사용하고 있으며 직접 함수형 인터페이스를 만들기 어려운 상황이다. 이런 상황에서는 아래 예제처럼 명시적으로 확인된 예외를 잡을 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">BufferedReader</span><span style="color:#f92672">,</span> <span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">f</span> <span style="color:#f92672">=</span> 
+	<span style="color:#f92672">(</span><span style="color:#111">BufferedReader</span> <span style="color:#111">b</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+		<span style="color:#00a8c8">try</span><span style="color:#f92672">{</span>
+			<span style="color:#00a8c8">return</span> <span style="color:#111">b</span><span style="color:#f92672">.</span><span style="color:#75af00">readLine</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span>
+		<span style="color:#00a8c8">catch</span><span style="color:#f92672">(</span><span style="color:#111">IOException</span> <span style="color:#111">e</span><span style="color:#f92672">){</span>
+			<span style="color:#00a8c8">throw</span> <span style="color:#00a8c8">new</span> <span style="color:#111">RuntimeException</span><span style="color:#f92672">(</span><span style="color:#111">e</span><span style="color:#f92672">);</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">};</span></code></pre></div>
+<h3 id="형식-검사-형식-추론-제약">형식 검사, 형식 추론, 제약</h3>
+
+<p>람다 표현식 자체에는 람다가 어떤 함수형 인터페이스를 구현하는지의 정보가 포함되어 있지 않다. 람다가 사용되는 context를 이용해서 람다의 형식(type)을 추론할 수 있다.
+<img src="/type_inspection_process.jpg" alt="" /></p>
+
+<p><strong>특별한 void 호환 규칙</strong></p>
+
+<p>람다의 바디에 일반 표현식이 있으면 void를 반환하는 함수 디스크립터와 호환된다(물론 파라미터 리스트도 호환되어야 함). 예를 들어 List의 add 메서드는 boolean을 반환하지만  Consumer 컨텍스트(T -&gt; void)에도 유효한 코드다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Predicate는 불린 반환값을 갖는다.
+</span><span style="color:#75715e"></span><span style="color:#111">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">p</span> <span style="color:#f92672">=</span> <span style="color:#111">s</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">list</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">s</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">// Consumer는 void 반환값을 갖는다. 
+</span><span style="color:#75715e"></span><span style="color:#111">Consumer</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">b</span> <span style="color:#f92672">=</span> <span style="color:#111">s</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">list</span><span style="color:#f92672">.</span><span style="color:#75af00">add</span><span style="color:#f92672">(</span><span style="color:#111">s</span><span style="color:#f92672">);</span></code></pre></div>
+<p><strong>형식 추론</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//형식을 추론하지 않음
+</span><span style="color:#75715e"></span><span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+<span style="color:#75715e">//형식을 추론함
+</span><span style="color:#75715e"></span><span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#111">a1</span><span style="color:#f92672">,</span>  <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+
+<span style="color:#75715e">//형식 추론한 다른 예제
+</span><span style="color:#75715e"></span><span style="color:#111">List</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">greenApples</span> <span style="color:#f92672">=</span> <span style="color:#111">filter</span><span style="color:#f92672">(</span><span style="color:#111">inventory</span><span style="color:#f92672">,</span> <span style="color:#111">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#111">green</span><span style="color:#960050;background-color:#1e0010">”</span><span style="color:#f92672">.</span><span style="color:#75af00">equals</span><span style="color:#f92672">(</span><span style="color:#111">a</span><span style="color:#f92672">.</span><span style="color:#75af00">getColor</span><span style="color:#f92672">()));</span></code></pre></div>
+<p><strong>지역 변수 사용</strong></p>
+
+<p>람다 표현식에서는 자유 변수(파라미터로 넘겨진 변수가 아니라 외부에서 정의된 변수)를 활용할 수 있다. 이와 같은 동작을 람다 캡쳐링이라고 부른다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a8c8">int</span> <span style="color:#111">portNumber</span> <span style="color:#f92672">=</span> <span style="color:#111">123</span><span style="color:#f92672">;</span>
+<span style="color:#111">Runnable</span> <span style="color:#111">r</span> <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">portNumber</span><span style="color:#f92672">);</span></code></pre></div>
+<p>하지만 자유 변수에도 약간의 제약이 있다. 람다는 인스턴스 변수와 정적 변수를 자유롭게 캡쳐(자신의 바디에서 참조할 수 있도록) 할 수 있다. 하지만 그러려면 <strong>지역 변수는 final로 선언되거나 실질적으로 final 처럼 취급되어야 한다.</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//컴파일 에러
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">int</span> <span style="color:#111">portNumber</span> <span style="color:#f92672">=</span> <span style="color:#111">123</span><span style="color:#f92672">;</span>
+<span style="color:#111">Runnable</span> <span style="color:#111">r</span> <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">System</span><span style="color:#f92672">.</span><span style="color:#75af00">out</span><span style="color:#f92672">.</span><span style="color:#75af00">println</span><span style="color:#f92672">(</span><span style="color:#111">portNumber</span><span style="color:#f92672">);</span>
+<span style="color:#111">portNumber</span> <span style="color:#f92672">=</span> <span style="color:#111">321</span><span style="color:#f92672">;</span></code></pre></div>
+<p><strong>지역변수에 왜 이러한 제약이 필요한지 알아보자.</strong></p>
+
+<p>우선 내부적으로 지역 변수는 스택에 위치한다. 람다에서 지역 변수에 바로 접근할 수 있다는 가정 하에 람다가 스레드에서 실행된다면 변수를 할당한 스레드가 사라져서 변수 할당이 해제되었는데도 람다를 실행하는 스레드에서는 해당 변수에 접근하려 할 수 있다. 따라서 자바 구현에서는 원래 변수에 접근을 허용하는 것이 아니라 자유 지역 변수의 복사본을 제공한다. 따라서 복사본의 값이 바뀌지 않아야 하므로 지역 변수에는 한 번만 값을 할당해야 한다는 제약이 생긴것이다.</p>
+
+<p>람다와 익명 클래스 모두 메서드의 인수로 전달될 수 있으며 자신의 외부 영역의 변수에 접근할 수 있다. 다만 람다와 익명 클래스는 람다가 정의된 메서드의 지역 변수의 값은 바꿀 수 없다. 람다가 정의된 메서드의 지역 변숫값은 final 변수여야 한다. <strong>람다는 변수가 아닌 값에 국한되어 어떤 동작을 수행한다는 사실이 명확해진다.</strong> 지역 변숫값은 스택에 존재하므로 자신을 정의한 스레드와 생존을 같이 해야 하며 따라서 지역 변수는 final 이어야 한다. 가변 지역 변수를 새로운 스레드에서 캡쳐할 수 있다면 안전하지 않은 동작을 수행할 가능성이 생긴다(인스턴스 변수는 스레드가 공유하는 힙에 존재하므로 특별한 제약이 없다).</p>
+
+<h3 id="메서드-레퍼런스">메서드 레퍼런스</h3>
+
+<p>메서드 레퍼런스를 이용하면 기존의 메서드 정의를 재활용해서 람다처럼 전달할 수 있다. 때로는 메서드 레퍼런스를 사용하는 것이 더 가독성이 좋으며 자연스러울 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 기존 코드
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">((</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()));</span>
+
+<span style="color:#75715e">// 메서드 레퍼런스와 java.util.Comparator.comparing을 활용한 코드 
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">((</span><span style="color:#111">comparing</span><span style="color:#f92672">(</span><span style="color:#111">Apple:</span><span style="color:#f92672">:</span><span style="color:#111">getWeight</span><span style="color:#f92672">());</span> </code></pre></div>
+<p>메서드 레퍼런스는 특정 메서드만을 호출하는 람다의 축약형이라고 생각할 수 있다. 예를 들어 <code>Apple::getWeight</code>는 Apple 클래스에 정의된 getWeight의 메서드 레퍼런스다. 실제로 메서드를 호출하는 것은 아니므로 괄호는 필요없다. 결과적으로 메서드 레퍼런스는 람다 표현식 <code>(Apple a) -&gt; a.getWeight()</code>를 축약한 것이다.</p>
+
+<p>람다와 메서드 레퍼런스 단축 표현 예제</p>
+
+<p>| 람다 | 메서드 레퍼런스 단축 표현 |
+| &ndash; | &ndash; |
+| (Apple a) -&gt; a.getWeight() | Apple :: getWeight |
+| () -&gt; Thread.currentThread().dumpStack() | Thread.currentThread() :: dumpStack |
+| (str, i) -&gt; str.substring(i) | String :: substring |
+| (String s) -&gt; System.out.println(s) | System.out :: println |</p>
+
+<p><strong>메서드 레퍼런스를 만드는 방법</strong></p>
+
+<p><img src="/change_methodreference.jpg" alt="" /></p>
+
+<p>메서드 레퍼런스는 세 가지 유형으로 구분할 수 있다. ‘정적 메서드 레페런스’, ‘다양한 형식의 인스턴스 메서드 레퍼런스’, ‘기존 객체의 인스턴스 메서드 레퍼런스&rsquo;</p>
+
+<p><strong>생성자 레퍼런스</strong></p>
+
+<p>ClassName :: new 처럼 클래스명과 new 키워드를 이용해서 기존 생성자의 레퍼런스를 만들 수 있다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Supplier</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c1</span> <span style="color:#f92672">=</span> <span style="color:#111">Apple</span> <span style="color:#f92672">::</span> <span style="color:#00a8c8">new</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 디폴트 생성자 Apple()의 생성자 레퍼런스
+</span><span style="color:#75715e"></span><span style="color:#111">Apple</span> <span style="color:#111">a1</span> <span style="color:#f92672">=</span> <span style="color:#111">c1</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">();</span> <span style="color:#75715e">// Supplier의 get 메서드를 호출해서 새로운 Apple 객체를 만들 수 있다.
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// 위 예제는 다음 코드와 같다.
+</span><span style="color:#75715e"></span><span style="color:#111">Supplier</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c1</span> <span style="color:#f92672">=</span> <span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Apple</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 람다 표현식은 디폴트 생성자를 가진 Apple을 만든다.
+</span><span style="color:#75715e"></span><span style="color:#111">Apple</span> <span style="color:#111">a1</span> <span style="color:#f92672">=</span> <span style="color:#111">c1</span><span style="color:#f92672">.</span><span style="color:#75af00">get</span><span style="color:#f92672">();</span> <span style="color:#f92672">//</span> <span style="color:#111">Supplier의</span> <span style="color:#111">get</span> <span style="color:#111">메서드를</span> <span style="color:#111">호출해서</span> <span style="color:#111">새로운</span> <span style="color:#111">Apple</span> <span style="color:#111">객체를</span> <span style="color:#111">만들</span> <span style="color:#111">수</span> <span style="color:#111">있다</span><span style="color:#f92672">.</span></code></pre></div>
+<p>Apple(Integer weight) 라는 시그니처를 갖는 생성자는 Function 인터페이스의 시그니처와 같다.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c2</span> <span style="color:#f92672">=</span> <span style="color:#111">Apple</span> <span style="color:#f92672">::</span> <span style="color:#00a8c8">new</span><span style="color:#f92672">;</span> <span style="color:#75715e">// Apple (Integer weight)의 생성자 레퍼런스
+</span><span style="color:#75715e"></span><span style="color:#111">Apple</span> <span style="color:#111">a2</span> <span style="color:#f92672">=</span> <span style="color:#111">c2</span><span style="color:#f92672">.</span><span style="color:#75af00">apply</span><span style="color:#f92672">(</span><span style="color:#111">110</span><span style="color:#f92672">);</span> <span style="color:#75715e">// Function의 apply 메서드를 무게를 인수로 호출해서 새로운 Apple 객체를 만들 수 있다.
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//위 예제는 다음 코드와 같다.
+</span><span style="color:#75715e"></span><span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">c2</span> <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#111">weight</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#00a8c8">new</span> <span style="color:#111">Apple</span><span style="color:#f92672">(</span><span style="color:#111">weight</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 특정 무게의 사과를 만드는 람다 표현식
+</span><span style="color:#75715e"></span><span style="color:#111">Apple</span> <span style="color:#111">a2</span> <span style="color:#f92672">=</span> <span style="color:#111">c2</span><span style="color:#f92672">.</span><span style="color:#75af00">apply</span><span style="color:#f92672">(</span><span style="color:#111">110</span><span style="color:#f92672">);</span> <span style="color:#f92672">//</span> <span style="color:#111">Function의</span> <span style="color:#111">apply</span> <span style="color:#111">메서드를</span> <span style="color:#111">무게를</span> <span style="color:#111">인수로</span> <span style="color:#111">호출해서</span> <span style="color:#111">새로운</span> <span style="color:#111">Apple</span> <span style="color:#111">객체를</span> <span style="color:#111">만들</span> <span style="color:#111">수</span> <span style="color:#111">있다</span><span style="color:#f92672">.</span></code></pre></div>
+<h3 id="람다-메서드-레퍼런스-활용하기">람다, 메서드 레퍼런스 활용하기</h3>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 1단계 
+</span><span style="color:#75715e"></span><span style="color:#00a8c8">public</span> <span style="color:#00a8c8">class</span> <span style="color:#75af00">AppleComparator</span> <span style="color:#00a8c8">implements</span> <span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;{</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">AppleComparator</span><span style="color:#f92672">());</span>
+
+<span style="color:#75715e">// 2단계: 익명 클래스 사용
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#00a8c8">new</span> <span style="color:#111">Comparator</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;(){</span>
+	<span style="color:#00a8c8">public</span> <span style="color:#00a8c8">int</span> <span style="color:#75af00">compare</span><span style="color:#f92672">(</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">){</span>
+		<span style="color:#00a8c8">return</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">());</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">});</span>
+
+<span style="color:#75715e">// 3단계 : 람다 표현식 사용
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">((</span><span style="color:#111">Apple</span> <span style="color:#111">a1</span><span style="color:#f92672">,</span> <span style="color:#111">Apple</span> <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()));</span>
+
+<span style="color:#75715e">//형식 추론을 통해 더 간소화
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">((</span><span style="color:#111">a1</span><span style="color:#f92672">,</span>  <span style="color:#111">a2</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a1</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">().</span><span style="color:#75af00">compareTo</span><span style="color:#f92672">(</span><span style="color:#111">a2</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()));</span>
+
+ <span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#111">comparing</span><span style="color:#f92672">((</span><span style="color:#111">a</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()));</span>
+
+<span style="color:#75715e">// 4단계 : 메서드 레퍼런스 사용
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#111">comparing</span><span style="color:#f92672">(</span><span style="color:#111">Apple:</span><span style="color:#f92672">:</span><span style="color:#111">getWeight</span><span style="color:#f92672">));</span></code></pre></div>
+<h3 id="람다-표현식을-조합할-수-있는-유용한-메서드">람다 표현식을 조합할 수 있는 유용한 메서드</h3>
+
+<p>여러 개의 람다 표현식을 조합해서 복잡한 람다 표현식을 만들 수 있다(디폴트 메서드 덕분).</p>
+
+<p><strong>Comparator 조합</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 역정렬
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#111">comparing</span><span style="color:#f92672">(</span><span style="color:#111">Apple:</span><span style="color:#f92672">:</span><span style="color:#111">getWeight</span><span style="color:#f92672">)).</span><span style="color:#75af00">reversed</span><span style="color:#f92672">();</span>
+
+<span style="color:#75715e">// Comparator 연결
+</span><span style="color:#75715e"></span><span style="color:#111">inventory</span><span style="color:#f92672">.</span><span style="color:#75af00">sort</span><span style="color:#f92672">(</span><span style="color:#111">comparing</span><span style="color:#f92672">(</span><span style="color:#111">Apple:</span><span style="color:#f92672">:</span><span style="color:#111">getWeight</span><span style="color:#f92672">).</span><span style="color:#75af00">reversed</span><span style="color:#f92672">().</span><span style="color:#75af00">thenComparing</span><span style="color:#f92672">(</span><span style="color:#111">Apple:</span><span style="color:#f92672">:</span><span style="color:#111">getCountry</span><span style="color:#f92672">));</span></code></pre></div>
+<p><strong>Predicate 조합</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 반전시킴
+</span><span style="color:#75715e"></span><span style="color:#111">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">notRedApple</span> <span style="color:#f92672">=</span> <span style="color:#111">redApple</span><span style="color:#f92672">.</span><span style="color:#75af00">negate</span><span style="color:#f92672">();</span>
+
+<span style="color:#75715e">// and 조합
+</span><span style="color:#75715e"></span><span style="color:#111">Predicate</span><span style="color:#f92672">&lt;</span><span style="color:#111">Apple</span><span style="color:#f92672">&gt;</span> <span style="color:#111">redAndHeavyApple</span> <span style="color:#f92672">=</span> <span style="color:#111">redApple</span><span style="color:#f92672">.</span><span style="color:#75af00">and</span><span style="color:#f92672">(</span><span style="color:#111">a</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">a</span><span style="color:#f92672">.</span><span style="color:#75af00">getWeight</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#111">150</span><span style="color:#f92672">);</span></code></pre></div>
+<p>cf)  a.or(b).and&copy;는 (a || b) &amp;&amp; c 와 같다.</p>
+
+<p><strong>Function 조합</strong></p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// andThen - 주어진 함수를 먼저 적용한 결과를 다른 함수의 입력으로 전달하는 함수를 반환
+</span><span style="color:#75715e"></span><span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">f</span> <span style="color:#f92672">=</span> <span style="color:#111">x</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">x</span><span style="color:#f92672">+</span><span style="color:#111">1</span><span style="color:#f92672">;</span>
+<span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">g</span> <span style="color:#f92672">=</span> <span style="color:#111">x</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">x</span><span style="color:#f92672">*</span><span style="color:#111">2</span><span style="color:#f92672">;</span>
+<span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">h</span> <span style="color:#f92672">=</span> <span style="color:#111">f</span><span style="color:#f92672">.</span><span style="color:#75af00">andThen</span><span style="color:#f92672">(</span><span style="color:#111">g</span><span style="color:#f92672">);;</span>
+<span style="color:#00a8c8">int</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#111">h</span><span style="color:#f92672">.</span><span style="color:#75af00">apply</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 4를 반환 
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">//compose - 인자로 주어진 함수를 먼저 실행한 다음에 그 결과를 외부 함수의 인수로 제공
+</span><span style="color:#75715e"></span><span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">f</span> <span style="color:#f92672">=</span> <span style="color:#111">x</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">x</span><span style="color:#f92672">+</span><span style="color:#111">1</span><span style="color:#f92672">;</span>
+<span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">g</span> <span style="color:#f92672">=</span> <span style="color:#111">x</span> <span style="color:#f92672">-&gt;</span> <span style="color:#111">x</span><span style="color:#f92672">*</span><span style="color:#111">2</span><span style="color:#f92672">;</span>
+<span style="color:#111">Function</span><span style="color:#f92672">&lt;</span><span style="color:#111">Integer</span><span style="color:#f92672">,</span> <span style="color:#111">Integer</span><span style="color:#f92672">&gt;</span> <span style="color:#111">h</span> <span style="color:#f92672">=</span> <span style="color:#111">f</span><span style="color:#f92672">.</span><span style="color:#75af00">compose</span><span style="color:#f92672">(</span><span style="color:#111">g</span><span style="color:#f92672">);;</span>
+<span style="color:#00a8c8">int</span> <span style="color:#111">result</span> <span style="color:#f92672">=</span> <span style="color:#111">h</span><span style="color:#f92672">.</span><span style="color:#75af00">apply</span><span style="color:#f92672">(</span><span style="color:#111">1</span><span style="color:#f92672">);</span> <span style="color:#f92672">//</span> <span style="color:#111">3를</span> <span style="color:#111">반환</span> </code></pre></div>
+
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/java8_in_action/" title="Java 8 in Action"> <i class="fa fa-chevron-left"></i><label>Java 8 in Action</label></a>
+    <a class="nav nav-next" href="/java8_in_action/part2-1_%E1%84%92%E1%85%A1%E1%86%B7%E1%84%89%E1%85%AE%E1%84%92%E1%85%A7%E1%86%BC_%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5_%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5/" title="Part2-1 함수형 데이터 처리" style="margin-right: 0px;"><label>Part2-1 함수형 데이터 처리</label><i class="fa fa-chevron-right"></i></a></div>
+  </div>
+
+  </section>
+</article>
+
+<footer>
+
+<div class="footline">
+    
+
+    
+
+    
+
+    
+  </div>
+
+
+	<div>
+
+
+  
+    
+  
+
+
+
+	</div>
+</footer>
+
+<script src="/js/clipboard.min.js"></script>
+
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
+
+
+
+<script src="/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>
